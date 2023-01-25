@@ -27,6 +27,5 @@ func Setup(app *fiber.App) {
 
 	// User and logout routes ..............
 	app.Get("/api/user", controllers.User)
-	app.Get("/api/allUsers", controllers.AllUser)
 	app.Post("/api/logout", controllers.Logout)
 }

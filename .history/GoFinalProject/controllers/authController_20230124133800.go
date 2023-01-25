@@ -98,9 +98,9 @@ func Login(c *fiber.Ctx) error {
 	}
 
 	cookie := fiber.Cookie{
-		Name:  "jwt",
-		Value: token,
-		// Expires:  time.Now().Add(time.Hour * 24),
+		Name:     "jwt",
+		Value:    token,
+		Expires:  time.Now().Add(time.Hour * 24),
 		HTTPOnly: true,
 	}
 	c.Cookie(&cookie)
@@ -130,26 +130,6 @@ func User(c *fiber.Ctx) error {
 	var user models.User
 	database.DB.Where("id = ?", claims.Issuer).First(&user)
 	return c.JSON(user)
-}
-
-func AllUser(c *fiber.Ctx) error {
-	cookie := c.Cookies("jwt")
-	token, err := jwt.ParseWithClaims(cookie, &jwt.StandardClaims{}, func(t *jwt.Token) (interface{}, error) {
-		return []byte("secret"), nil
-	})
-	if err != nil {
-		c.Status(fiber.StatusUnauthorized)
-		return c.JSON(fiber.Map{
-			"message": "unauthenticated",
-		})
-	}
-	claims := token.Claims.(*jwt.StandardClaims)
-
-	var getUsers []models.User
-	database.DB.Where("id != ?", claims.Issuer).Find(&getUsers)
-	return c.JSON(fiber.Map{
-		"data": getUsers,
-	})
 }
 
 func Logout(c *fiber.Ctx) error {

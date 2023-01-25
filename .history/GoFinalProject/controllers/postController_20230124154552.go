@@ -3,6 +3,7 @@ package controllers
 import (
 	"errors"
 	"fmt"
+	"math"
 	"strconv"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
@@ -28,21 +29,20 @@ func CreatePost(c *fiber.Ctx) error {
 }
 
 func AllPost(c *fiber.Ctx) error {
-	/* page, _ := strconv.Atoi(c.Query("page", "1"))
+	page, _ := strconv.Atoi(c.Query("page", "1"))
 	limit := 5
 	offset := (page - 1) * limit
-	var total int64 */
+	var total int64
 	var getblog []models.Blog
-	database.DB.Preload("User").Find(&getblog)
-	// database.DB.Preload("User").Offset(offset).Limit(limit).Find(&getblog)
-	// database.DB.Model(&models.Blog{}).Count(&total)
+	database.DB.Preload("User").Offset(offset).Limit(limit).Find(&getblog)
+	database.DB.Model(&models.Blog{}).Count(&total)
 	return c.JSON(fiber.Map{
 		"data": getblog,
-		/* "meta": fiber.Map{
+		"meta": fiber.Map{
 			"total":     total,
 			"page":      page,
 			"last_page": math.Ceil(float64(int(total) / limit)),
-		}, */
+		},
 	})
 }
 

@@ -28,7 +28,7 @@ function AllUsers() {
 
     const allUsers = async () => {
         setLoading(true);
-        await axios.get(`http://127.0.0.1:8080/api/allUsers`, {withCredentials: true})
+        await axios.get(`http://127.0.0.1:8080/api/allUsers`, {withCredentials: false})
         .then(function(response) {
             // handle access .....
             setLoading(false);
