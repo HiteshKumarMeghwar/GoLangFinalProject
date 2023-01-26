@@ -86,12 +86,12 @@ function AllUsers() {
                     {allUsersData?.map((blog) => (
                         <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article className="overflow-hidden rounded-lg shadow-lg">
-                                <Link to={`/all_users/${blog.id}`}>
+                                <Link to={`/allpost/${blog.id}`}>
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNaZWu6JFF7vxUdvIhvdG8RLQiMCI0RHUaitDRFpmj&s" alt="placeholder" className="block h-72 w-full" />
                                 </Link>
                                 <header className="flex items-center justify-between leading-light p-2 md:p-4">
                                     <h1 className="text-lg">
-                                        <Link to={`/all_users/${blog.id}`} className="no-underline hover:underline text-black" >
+                                        <Link to={`/allpost/${blog.id}`} className="no-underline hover:underline text-black" >
                                             {blog.first_name} {blog.last_name}
                                         </Link>
                                     </h1>
@@ -100,7 +100,7 @@ function AllUsers() {
                                     </p>
                                 </header>
                                 <footer className="flex items-center justify-between leading-light p-2 md:p-4">
-                                    <Link to={`/all_users/${blog.id}`} className="no-underline hover:underline text-black" >
+                                    <Link to={`/allpost/${blog.id}`} className="no-underline hover:underline text-black" >
                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNaZWu6JFF7vxUdvIhvdG8RLQiMCI0RHUaitDRFpmj&s" alt="placeholder" className="block rounded-full h-5 w-5" />
                                         <p>{blog.phone}</p>
                                     </Link>

@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"errors"
 	"regexp"
 	"strconv"
 	"strings"
@@ -13,7 +12,6 @@ import (
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/util"
 	"github.com/dgrijalva/jwt-go/v4"
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
 )
 
 func validateEmail(email string) bool {
@@ -152,32 +150,6 @@ func AllUser(c *fiber.Ctx) error {
 	database.DB.Preload("User").Find(&getUsers)
 	return c.JSON(fiber.Map{
 		"data": getUsers,
-	})
-}
-
-func SingleUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	var SingleUser models.User
-	database.DB.Where("id=?", id).Preload("Blog").First(&SingleUser)
-	return c.JSON(fiber.Map{
-		"data": SingleUser,
-	})
-}
-
-func DeleteUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	User := models.User{
-		Id: uint(id),
-	}
-	deleteQuery := database.DB.Delete(&User)
-	if errors.Is(deleteQuery.Error, gorm.ErrRecordNotFound) {
-		c.Status(400)
-		return c.JSON(fiber.Map{
-			"message": "Opps!, user not found",
-		})
-	}
-	return c.JSON(fiber.Map{
-		"message": "user deleted successfully ... !",
 	})
 }
 

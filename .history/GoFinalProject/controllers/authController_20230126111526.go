@@ -155,15 +155,6 @@ func AllUser(c *fiber.Ctx) error {
 	})
 }
 
-func SingleUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	var SingleUser models.User
-	database.DB.Where("id=?", id).Preload("Blog").First(&SingleUser)
-	return c.JSON(fiber.Map{
-		"data": SingleUser,
-	})
-}
-
 func DeleteUser(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
 	User := models.User{

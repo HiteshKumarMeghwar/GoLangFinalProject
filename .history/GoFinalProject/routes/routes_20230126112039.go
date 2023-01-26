@@ -28,7 +28,6 @@ func Setup(app *fiber.App) {
 	// User and logout routes ..............
 	app.Get("/api/user", controllers.User)
 	app.Get("/api/allUsers", controllers.AllUser)
-	app.Get("/api/allUsers/:id", controllers.SingleUser)
 	app.Delete("/api/deleteUser/:id", controllers.DeleteUser)
 	app.Post("/api/logout", controllers.Logout)
 }

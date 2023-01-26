@@ -34,7 +34,7 @@ function BlogDetail() {
         <div className='relative'>
             <div className='max-w-3xl mb-10 rounded overflow-hidden flex flex-col mx-auto text-center'>
                 <div className='max-w-3xl mx-auto text-xl sm:text-4xl font-semibold inline-block hover:text-indigo-600'>
-                    Post Details
+                    My Single Post
                 </div>
                 <img 
                     className='w-full h-96 my-4'

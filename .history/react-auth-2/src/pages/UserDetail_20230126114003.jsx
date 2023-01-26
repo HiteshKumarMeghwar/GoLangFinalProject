@@ -1,19 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 
-
-function BlogDetail() {
-    const [singlePost, setSinglePost] = useState();
+function UserDetail() {
+    const [singleUser, setSingleUser] = useState();
     const {id} = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         const singleBlog = () => {
-            axios.get(`http://127.0.0.1:8080/api/allpost/${id}`, {withCredentials: true})
+            axios.get(`http://127.0.0.1:8080/api/allUsers/${id}`, {withCredentials: true})
             .then(function(response) {
                 // handle access .....
-                setSinglePost(response?.data?.data);
+                setSingleUser(response?.data?.data);
                 console.log(response?.data?.data);
             }).catch(function(error) {
                 // handle error
@@ -34,22 +33,22 @@ function BlogDetail() {
         <div className='relative'>
             <div className='max-w-3xl mb-10 rounded overflow-hidden flex flex-col mx-auto text-center'>
                 <div className='max-w-3xl mx-auto text-xl sm:text-4xl font-semibold inline-block hover:text-indigo-600'>
-                    Post Details
+                    User Details
                 </div>
                 <img 
                     className='w-full h-96 my-4'
-                    src={singlePost?.image} 
-                    alt="" 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNaZWu6JFF7vxUdvIhvdG8RLQiMCI0RHUaitDRFpmj&s" 
+                    alt="placeholder" 
                 />
                 <p className='text-gray-700 text-base leading-8 max-w-2xl mx-auto'>
-                    Author: {singlePost?.user?.first_name} {singlePost?.user?.last_name}
+                    Author: {singleUser?.first_name} {singleUser?.last_name}
                 </p>
                 <hr />
             </div>
             <div className='max-w-3xl mx-auto'>
                 <div className='mt-3 bg-white rounded-b lg-rounded-b-none lg-rounded-r flex flex-col justify-between'>
                     <div>
-                        <p className='text-base leading-8 my-5'>{singlePost?.desc}</p>
+                        <p className='text-base leading-8 my-5'>{singleUser?.email}</p>
                     </div>
                 </div>
             </div>
@@ -57,4 +56,4 @@ function BlogDetail() {
     )
 }
 
-export default BlogDetail
+export default UserDetail
