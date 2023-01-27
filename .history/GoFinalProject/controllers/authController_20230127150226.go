@@ -159,7 +159,7 @@ func AllUser(c *fiber.Ctx) error {
 
 	var getUsers []models.User
 	// database.DB.Where("id != ?", claims.Issuer).Find(&getUsers)
-	database.DB.Where("id != ?", id).Find(&getUsers)
+	database.DB.Model(&getUsers).Where("user_id=?", id).Preload("User").Find(&getUsers)
 	// database.DB.Preload("User").Find(&getUsers)
 	return c.JSON(fiber.Map{
 		"data": getUsers,

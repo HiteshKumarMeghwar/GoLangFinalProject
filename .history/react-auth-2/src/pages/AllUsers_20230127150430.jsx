@@ -33,7 +33,7 @@ function AllUsers() {
         let body = {
             id : JSON.stringify(User.id),
         }
-        await axios.post(`http://127.0.0.1:8080/api/allUsers`, body, {withCredentials: true})
+        await axios.get(`http://127.0.0.1:8080/api/allUsers`, body, {withCredentials: true})
         .then(function(response) {
             // handle access .....
             setLoading(false);

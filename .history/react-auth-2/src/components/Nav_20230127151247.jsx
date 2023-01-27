@@ -50,7 +50,7 @@ function Nav() {
                 {userData && (
                   <>
                     <li>
-                      <p style={{color: "blue", fontFamily: "cursive", fontSize: "larger", fontWeight: "bold"}}>{userData.first_name} {userData.last_name}</p>
+                      <p style={{color: "blue", fontFamily: "cursive", fontSize: "larger"}}>{userData.first_name} {userData.last_name}</p>
                     </li>
                     <li>
                       -

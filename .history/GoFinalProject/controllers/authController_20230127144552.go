@@ -147,20 +147,9 @@ func AllUser(c *fiber.Ctx) error {
 	}
 	claims := token.Claims.(*jwt.StandardClaims) */
 
-	payload := struct {
-		Id string `json:"id"`
-	}{}
-
-	if err := c.BodyParser(&payload); err != nil {
-		return err
-	}
-
-	id := payload.Id
-
 	var getUsers []models.User
 	// database.DB.Where("id != ?", claims.Issuer).Find(&getUsers)
-	database.DB.Where("id != ?", id).Find(&getUsers)
-	// database.DB.Preload("User").Find(&getUsers)
+	database.DB.Preload("User").Find(&getUsers)
 	return c.JSON(fiber.Map{
 		"data": getUsers,
 	})
