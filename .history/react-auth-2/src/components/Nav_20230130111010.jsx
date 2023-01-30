@@ -33,6 +33,12 @@ function Nav() {
     setUserData(parseUser);
   }, [setUserData]);
 
+  const timer = setTimeout(() => {
+    if (userData) {
+      window.location.reload();
+    }
+  }, 1);
+
   return (
     <>
       <section>

@@ -19,7 +19,6 @@ function Nav() {
         // handle access .....
         localStorage.removeItem("token")
         localStorage.removeItem("user")
-        window.location.reload();
         navigate("/login");
     }).catch(function(error) {
         // handle error
@@ -31,6 +30,7 @@ function Nav() {
     const User = localStorage.getItem("user");
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
+    window.location.reload();
   }, [setUserData]);
 
   return (

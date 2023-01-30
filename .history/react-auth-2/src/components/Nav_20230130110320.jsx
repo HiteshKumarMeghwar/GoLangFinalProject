@@ -33,6 +33,10 @@ function Nav() {
     setUserData(parseUser);
   }, [setUserData]);
 
+  if (userData) {
+    window.location.reload();
+  }
+
   return (
     <>
       <section>

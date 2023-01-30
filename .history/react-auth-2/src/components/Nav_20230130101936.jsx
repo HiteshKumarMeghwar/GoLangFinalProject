@@ -31,6 +31,7 @@ function Nav() {
     const User = localStorage.getItem("user");
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
+    // window.location.reload();
   }, [setUserData]);
 
   return (
