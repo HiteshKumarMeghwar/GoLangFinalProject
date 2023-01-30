@@ -13,7 +13,6 @@ import UserDetail from './pages/UserDetail';
 import EditPost from './pages/EditPost';
 import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
-import EditUser from './pages/EditUser';
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<UserProfile />} />
             <Route exact path='/edit_profile/:id' element={<EditProfile />} />
-            <Route exact path='/edit_user/:id' element={<EditUser />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/personal_posts' element={<PersonalBlog />} />

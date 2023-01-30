@@ -5,6 +5,7 @@
         "createpost",
         "deletepost",
         "dgrijalva",
+        "foreignkey",
         "getblog",
         "gofiber",
         "gorm",
@@ -14,6 +15,7 @@
         "signin",
         "singleblog",
         "uniquepost",
-        "updatepost"
+        "updatepost",
+        "userid"
     ]
 }

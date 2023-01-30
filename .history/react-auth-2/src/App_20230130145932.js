@@ -13,7 +13,6 @@ import UserDetail from './pages/UserDetail';
 import EditPost from './pages/EditPost';
 import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
-import EditUser from './pages/EditUser';
 
 function App() {
   return (

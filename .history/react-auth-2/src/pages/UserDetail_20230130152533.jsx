@@ -13,7 +13,7 @@ function UserDetail() {
             .then(function(response) {
                 // handle access .....
                 setSingleUser(response?.data?.data);
-                console.log(response?.data?.data);
+                console.log(response?.data);
             }).catch(function(error) {
                 // handle error
                 console.log(error);

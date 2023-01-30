@@ -201,26 +201,14 @@ func UpdateProfile(c *fiber.Ctx) error {
 		fmt.Println("Unable to parse body")
 	}
 	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
 		"message": "post updated successfully ... !",
-		"user":    user,
 	})
 }
 
 func UpdateUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user := models.User{
-		Id: uint(id),
-	}
-
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("Unable to parse body")
-	}
-	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
-		"message": "post updated successfully ... !",
+		"message": "User Updated ... !",
 	})
 }
 
@@ -238,6 +226,7 @@ func DeleteUser(c *fiber.Ctx) error {
 	}
 	return c.JSON(fiber.Map{
 		"message": "user deleted successfully ... !",
+		"user":    User,
 	})
 }
 

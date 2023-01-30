@@ -9,11 +9,11 @@ function UserDetail() {
 
     useEffect(() => {
         const singleBlog = () => {
-            axios.post(`http://127.0.0.1:8080/api/allUsers/${id}`, {withCredentials: true})
+            axios.get(`http://127.0.0.1:8080/api/allUsers/${id}`, {withCredentials: true})
             .then(function(response) {
                 // handle access .....
                 setSingleUser(response?.data?.data);
-                console.log(response?.data?.data);
+                console.log(response?.data);
             }).catch(function(error) {
                 // handle error
                 console.log(error);

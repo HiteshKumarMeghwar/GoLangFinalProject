@@ -226,10 +226,22 @@ func UpdateUser(c *fiber.Ctx) error {
 
 func DeleteUser(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
+
+	Post := models.Blog{
+		UserID: string(rune(id)),
+	}
+	deleteQuery := database.DB.Delete(&Post)
+	if errors.Is(deleteQuery.Error, gorm.ErrRecordNotFound) {
+		c.Status(400)
+		return c.JSON(fiber.Map{
+			"message": "Opps!, user not found",
+		})
+	}
+
 	User := models.User{
 		Id: uint(id),
 	}
-	deleteQuery := database.DB.Delete(&User)
+	deleteQuery = database.DB.Delete(&User)
 	if errors.Is(deleteQuery.Error, gorm.ErrRecordNotFound) {
 		c.Status(400)
 		return c.JSON(fiber.Map{

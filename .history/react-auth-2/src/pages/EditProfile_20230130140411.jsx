@@ -63,26 +63,28 @@ function EditProfile() {
         const body = {
             ...data,
             role_id: userData?.role_id
-        }
-        // console.log(body);
-        // return
-        axios.put(`http://127.0.0.1:8080/api/updateProfile/${id}`, { ...body})
-        .then(function(response) {
-            // handle access .....
-            setLoading(false);
-            setMessage(response?.data?.message);
-            // openSnackbar(response?.data?.message);
-            navigate("/all_users");
-        }).catch(function(error) {
-            // handle error
-            setLoading(false);
-            setMessage(error?.response?.data?.message);
-            // openSnackbar(error?.response?.data?.message);
-            // console.log(error?.response?.data?.message);
-        }).then(function() {
-            //  always executed ....
-        });
-        // console.log(data);
+    }
+    // console.log(body);
+    // return
+    axios.put(`http://127.0.0.1:8080/api/updateProfile/${id}`, { ...body})
+    .then(function(response) {
+        // handle access .....
+        setLoading(false);
+        setMessage(response?.data?.message);
+        // openSnackbar(response?.data?.message);
+        localStorage.setItem("user", JSON.stringify(response?.data?.user));
+        console.log(response?.data?.user);
+        navigate("/profile");
+    }).catch(function(error) {
+        // handle error
+        setLoading(false);
+        setMessage(error?.response?.data?.message);
+        // openSnackbar(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
+    }).then(function() {
+        //  always executed ....
+    });
+    // console.log(data);
     };
 
     return (

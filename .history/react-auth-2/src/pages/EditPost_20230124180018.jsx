@@ -84,7 +84,7 @@ function EditPost() {
             // handle access .....
             // openSnackbar("Post Updated Successfully .. !");
             setLoading(false);
-            navigate("/");
+            navigate("/personal_posts");
         }).catch(function(error) {
             // handle error
             // openSnackbar("Post Not Updated");

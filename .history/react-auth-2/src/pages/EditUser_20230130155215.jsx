@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form'
 import axios from 'axios'
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
-function EditProfile() {
+export default function EditUser() {
     const [message, setMessage] = useState();
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState();
@@ -34,7 +34,6 @@ function EditProfile() {
         
     // const [openSnackbar] = useSnackbar(options);
 
-    
     useEffect(() => {
         const singleUser = async () => {
             await axios.post(`http://127.0.0.1:8080/api/allUsers/${id}`, {withCredentials: true})
@@ -57,7 +56,6 @@ function EditProfile() {
         singleUser();
     }, [navigate, id]);
 
-
     const onSubmit = (data) => {
         setLoading(true);
         const body = {
@@ -66,7 +64,7 @@ function EditProfile() {
         }
         // console.log(body);
         // return
-        axios.put(`http://127.0.0.1:8080/api/updateProfile/${id}`, { ...body})
+        axios.put(`http://127.0.0.1:8080/api/updateUser/${id}`, { ...body})
         .then(function(response) {
             // handle access .....
             setLoading(false);
@@ -89,7 +87,7 @@ function EditProfile() {
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
-                Update Your Profile
+                Update User
                 </h1>
                 {message && (
                 <div className='px-11 py-4'>
@@ -250,7 +248,7 @@ function EditProfile() {
                         } text-white font-bold py-2 px-4 rounded`}
                         disabled={loading ? true : false}
                         >
-                        {loading ? "Loading...":"Update Profile"}
+                        {loading ? "Loading...":"Update User"}
                         </button>
                     </div>
                 </form>
@@ -259,7 +257,7 @@ function EditProfile() {
                     {" "}
                     Don't wanna Update?{" "}
                     <Link
-                        to="/profile"
+                        to="/all_users"
                         className="font-medium text-purple-600 hover:underline"
                     >
                     Back
@@ -269,5 +267,3 @@ function EditProfile() {
         </div>
     )
 }
-
-export default EditProfile

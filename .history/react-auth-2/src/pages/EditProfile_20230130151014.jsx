@@ -72,7 +72,9 @@ function EditProfile() {
             setLoading(false);
             setMessage(response?.data?.message);
             // openSnackbar(response?.data?.message);
-            navigate("/all_users");
+            localStorage.setItem("user", JSON.stringify(response?.data?.user));
+            console.log(response?.data?.user);
+            navigate("/profile");
         }).catch(function(error) {
             // handle error
             setLoading(false);

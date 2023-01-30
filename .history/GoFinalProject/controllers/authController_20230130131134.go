@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"errors"
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -149,7 +148,7 @@ func AllUser(c *fiber.Ctx) error {
 	}
 	claims := token.Claims.(*jwt.StandardClaims) */
 
-	payload := struct {
+	/* payload := struct {
 		Id string `json:"id"`
 	}{}
 
@@ -157,7 +156,9 @@ func AllUser(c *fiber.Ctx) error {
 		return err
 	}
 
-	id := payload.Id
+	id := payload.Id */
+
+	id, _ := strconv.Atoi(c.Params("id"))
 
 	var singleUser []models.User
 	database.DB.Where("id = ?", id).First(&singleUser)
@@ -192,35 +193,14 @@ func SingleUser(c *fiber.Ctx) error {
 }
 
 func UpdateProfile(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user := models.User{
-		Id: uint(id),
-	}
-
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("Unable to parse body")
-	}
-	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
-		"message": "post updated successfully ... !",
-		"user":    user,
+		"message": "Profile Updated ... !",
 	})
 }
 
 func UpdateUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user := models.User{
-		Id: uint(id),
-	}
-
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("Unable to parse body")
-	}
-	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
-		"message": "post updated successfully ... !",
+		"message": "User Updated ... !",
 	})
 }
 

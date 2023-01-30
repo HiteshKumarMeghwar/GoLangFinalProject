@@ -202,25 +202,18 @@ func UpdateProfile(c *fiber.Ctx) error {
 	}
 	database.DB.Model(&user).Updates(user)
 
+	var singleUser []models.User
+	database.DB.Where("id = ?", user.Id).First(&singleUser)
+
 	return c.JSON(fiber.Map{
 		"message": "post updated successfully ... !",
-		"user":    user,
+		"user":    singleUser,
 	})
 }
 
 func UpdateUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user := models.User{
-		Id: uint(id),
-	}
-
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("Unable to parse body")
-	}
-	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
-		"message": "post updated successfully ... !",
+		"message": "User Updated ... !",
 	})
 }
 

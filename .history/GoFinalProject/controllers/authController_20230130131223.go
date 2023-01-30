@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"errors"
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -192,35 +191,14 @@ func SingleUser(c *fiber.Ctx) error {
 }
 
 func UpdateProfile(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user := models.User{
-		Id: uint(id),
-	}
-
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("Unable to parse body")
-	}
-	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
-		"message": "post updated successfully ... !",
-		"user":    user,
+		"message": "Profile Updated ... !",
 	})
 }
 
 func UpdateUser(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	user := models.User{
-		Id: uint(id),
-	}
-
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("Unable to parse body")
-	}
-	database.DB.Model(&user).Updates(user)
-
 	return c.JSON(fiber.Map{
-		"message": "post updated successfully ... !",
+		"message": "User Updated ... !",
 	})
 }
 

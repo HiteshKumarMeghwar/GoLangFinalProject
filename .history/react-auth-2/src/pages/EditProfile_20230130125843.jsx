@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import axios from 'axios'
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function EditProfile() {
     const [message, setMessage] = useState();
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState();
-    const {id} = useParams();
     const navigate = useNavigate();
 
     const {
@@ -34,55 +33,41 @@ function EditProfile() {
         
     // const [openSnackbar] = useSnackbar(options);
 
-    
     useEffect(() => {
-        const singleUser = async () => {
-            await axios.post(`http://127.0.0.1:8080/api/allUsers/${id}`, {withCredentials: true})
-            .then(function(response) {
-                // handle access .....
-                setLoading(false);
-                setUserData(response?.data?.data)
-            }).catch(function(error) {
-                // handle error
-                setLoading(false);
-            }).then(function() {
-                //  always executed ....
-            });
-        }
-
         let User = localStorage.getItem("user");
         if(!User) {
             navigate("/login")
         }
-        singleUser();
-    }, [navigate, id]);
+        User = JSON.parse(User);
+        setUserData(User);
+    }, [navigate]);
 
 
     const onSubmit = (data) => {
         setLoading(true);
         const body = {
             ...data,
-            role_id: userData?.role_id
-        }
-        // console.log(body);
-        // return
-        axios.put(`http://127.0.0.1:8080/api/updateProfile/${id}`, { ...body})
-        .then(function(response) {
-            // handle access .....
-            setLoading(false);
-            setMessage(response?.data?.message);
-            // openSnackbar(response?.data?.message);
-            navigate("/all_users");
-        }).catch(function(error) {
-            // handle error
-            setLoading(false);
-            setMessage(error?.response?.data?.message);
-            // openSnackbar(error?.response?.data?.message);
-            // console.log(error?.response?.data?.message);
-        }).then(function() {
-            //  always executed ....
-        });
-        // console.log(data);
+    }
+    // console.log(body);
+    // return
+    axios.post(`http://127.0.0.1:8080/api/updateProfile`, { ...body}).then(function(response) {
+        // handle access .....
+        setLoading(false);
+        setMessage(response?.data?.message);
+        // openSnackbar(response?.data?.message);
+        // localStorage.setItem("user", JSON.stringify(response?.data?.user));
+        // console.log(response?.data?.user);
+        navigate("/profile");
+    }).catch(function(error) {
+        // handle error
+        setLoading(false);
+        setMessage(error?.response?.data?.message);
+        // openSnackbar(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
+    }).then(function() {
+        //  always executed ....
+    });
+    // console.log(data);
     };
 
     return (
@@ -231,7 +216,7 @@ function EditProfile() {
                             {...register("phone", {
                             required: true,
                             })}
-                            defaultValue={userData?.phone}
+                            defaultValue={userData?.number}
                         />
                         <div>
                         {errors.phone && errors.phone.type === "required" && (
