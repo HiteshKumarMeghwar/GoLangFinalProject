@@ -108,7 +108,7 @@ export default function EditUser() {
                             type="text"
                             name="first_name"
                             id='first_name'
-                            // autoComplete='on'
+                            autoComplete='on'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             {...register("first_name", {
                             required: true,
@@ -137,7 +137,7 @@ export default function EditUser() {
                             type="text"
                             name='last_name'
                             id='last_name'
-                            // autoComplete='on'
+                            autoComplete='on'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             {...register("last_name", {
                             required: true,
@@ -166,7 +166,7 @@ export default function EditUser() {
                             type="email"
                             name='email'
                             id='email'
-                            // autoComplete='on'
+                            autoComplete='on'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             {...register("email", {
                             required: true,
@@ -195,7 +195,7 @@ export default function EditUser() {
                             type="password"
                             name='password'
                             id='password'
-                            // autoComplete='on'
+                            autoComplete='on'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             {...register("password", {
                             required: true,
@@ -224,7 +224,7 @@ export default function EditUser() {
                             type="number"
                             name='phone'
                             id='phone'
-                            // autoComplete='on'
+                            autoComplete='on'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             {...register("phone", {
                             required: true,
@@ -254,9 +254,9 @@ export default function EditUser() {
                             id="role_id"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
-                            <option value="1" {...userData && userData?.role_id === 1 ? "selected" : ""} >Admin</option>
-                            <option value="2" {...userData && userData?.role_id === 2 ? "selected" : ""} >Author</option>
-                            <option value="3" {...userData && userData?.role_id === 3 ? "selected" : ""} >Student</option>
+                            <option value="1" {...userData && (userData?.role_id === 1) ? "selected" : ""} >Admin</option>
+                            <option value="2" {...userData && (userData?.role_id === 2) ? "selected" : ""} >Author</option>
+                            <option value="3" {...userData && (userData?.role_id === 3) ? "selected" : ""} >Student</option>
                         </select>
                     </div>
                     <div className="mt-6">
