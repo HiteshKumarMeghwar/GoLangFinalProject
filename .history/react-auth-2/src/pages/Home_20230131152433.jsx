@@ -6,6 +6,7 @@ function Home() {
   const [userData, setUserData] = useState();
   const [blogData, setBlogData] = useState();
   const [loading, setLoading] = useState(false);
+  const [reloadPage, setReloadPage] = useState(true);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,6 +31,10 @@ function Home() {
     });
   }
 
+  if(reloadPage) {
+    window.location.reload();
+    setReloadPage(false)
+  }
 
   useEffect(() => {
     const User = localStorage.getItem("user");
@@ -39,7 +44,7 @@ function Home() {
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
     allBlog();
-  }, [navigate]);
+  }, [navigate, reloadPage]);
 
   const deleteBtn = async (blog) => {
       setDeleteLoading(true);

@@ -18,13 +18,9 @@ import ContactUs from './pages/ContactUs';
 
 function App() {
   const [userData, setUserData] = useState();
-  const [login, setLogin] = useState(false);
   // window.location.reload();
   useEffect(() => {
     const User = localStorage.getItem("user");
-    if (User) {
-      setLogin(true);
-    }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
   }, [setUserData]);
@@ -32,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter >
-        <Nav userData={userData} login={login} />
+        <Nav userData={userData} />
         <main className="form-signin">
           <Routes>
             <Route exact path='/' element={<Home />} />

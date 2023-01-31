@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 // import './App.css';
 import Nav from './components/Nav';
 import Home from './pages/Home';
@@ -18,12 +19,12 @@ import ContactUs from './pages/ContactUs';
 
 function App() {
   const [userData, setUserData] = useState();
-  const [login, setLogin] = useState(false);
-  // window.location.reload();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const User = localStorage.getItem("user");
-    if (User) {
-      setLogin(true);
+    if(!User){
+      navigate("/login");
     }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
@@ -32,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter >
-        <Nav userData={userData} login={login} />
+        <Nav userData={userData} />
         <main className="form-signin">
           <Routes>
             <Route exact path='/' element={<Home />} />

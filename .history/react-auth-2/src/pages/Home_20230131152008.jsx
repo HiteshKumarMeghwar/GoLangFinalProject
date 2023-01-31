@@ -6,6 +6,7 @@ function Home() {
   const [userData, setUserData] = useState();
   const [blogData, setBlogData] = useState();
   const [loading, setLoading] = useState(false);
+  const [reloadPage, setReloadPage] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,16 +31,21 @@ function Home() {
     });
   }
 
-
   useEffect(() => {
     const User = localStorage.getItem("user");
     if(!User) {
       navigate("/login")
+    }else{
+      setReloadPage(true);
+      if(reloadPage) {
+        setReloadPage(false);
+        window.location.reload();
+      }
     }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
     allBlog();
-  }, [navigate]);
+  }, [navigate, reloadPage]);
 
   const deleteBtn = async (blog) => {
       setDeleteLoading(true);

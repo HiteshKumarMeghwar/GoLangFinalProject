@@ -6,6 +6,7 @@ function Home() {
   const [userData, setUserData] = useState();
   const [blogData, setBlogData] = useState();
   const [loading, setLoading] = useState(false);
+  const [reloadPage, setReloadPage] = useState(true);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,11 +31,15 @@ function Home() {
     });
   }
 
-
   useEffect(() => {
     const User = localStorage.getItem("user");
     if(!User) {
       navigate("/login")
+    }else{
+      if(reloadPage) {
+        window.location.reload();
+      }
+      setReloadPage(false);
     }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);

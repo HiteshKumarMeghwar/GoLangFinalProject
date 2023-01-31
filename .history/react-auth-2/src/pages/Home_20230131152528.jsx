@@ -30,6 +30,9 @@ function Home() {
     });
   }
 
+  if(reloadPage) {
+    // win  dow.location.reload();
+  }
 
   useEffect(() => {
     const User = localStorage.getItem("user");
@@ -39,7 +42,7 @@ function Home() {
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
     allBlog();
-  }, [navigate]);
+  }, [navigate, reloadPage]);
 
   const deleteBtn = async (blog) => {
       setDeleteLoading(true);

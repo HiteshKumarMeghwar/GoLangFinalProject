@@ -58,7 +58,7 @@ function Nav(props) {
                       </li>
                     </>
                 )}
-                {props.userData && (
+                {props.userData && props.login && (
                   <>
                     <li>
                       <Link to="/profile" style={{color: "blue", fontFamily: "cursive", fontSize: "larger", fontWeight: "bold"}}>   
@@ -76,7 +76,7 @@ function Nav(props) {
                     </li>
                   </>
                 )}
-                {props.userData && props.userData.role_id === 1 && (
+                {props.userData && props.userData.role_id === 1 && props.login && (
                   <>
                     <li>
                       <Link to="/all_users" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">All Users</Link>
@@ -86,21 +86,21 @@ function Nav(props) {
                     </li>
                   </>
                 )}
-                {props.userData && props.userData.role_id === 2 && (
+                {props.userData && props.userData.role_id === 2 && props.login && (
                   <>
                     <li>
                       <Link to="/all_users" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">All Users</Link>
                     </li>
                   </>
                 )}
-                {props.userData && (
+                {props.userData && props.login && (
                   <li>
                     <button onClick={logOut} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       Log Out
                     </button>
                   </li>
                 )}
-                {!props.userData && (
+                {!props.userData && !props.login && (
                   <>
                     <li>
                       <Link to="/login" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</Link>
