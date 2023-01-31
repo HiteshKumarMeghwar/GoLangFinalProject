@@ -23,12 +23,17 @@ function App() {
   // window.location.reload();
   useEffect(() => {
     const User = localStorage.getItem("user");
-    if (User) {
-      setLogin(true);
-    }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
   }, [setUserData]);
+  
+  if (userData) {
+    setLogin(true);
+  }
+
+  if(login){
+    window.location.reload();
+  }
 
   return (
     <div className="App">

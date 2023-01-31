@@ -19,7 +19,9 @@ import ContactUs from './pages/ContactUs';
 
 function App() {
   const [userData, setUserData] = useState();
-  const [login, setLogin] = useState(false);
+  if(!userData){
+    const [login, setLogin] = useState(true);
+  }
   // window.location.reload();
   useEffect(() => {
     const User = localStorage.getItem("user");
@@ -30,6 +32,9 @@ function App() {
     setUserData(parseUser);
   }, [setUserData]);
 
+  if(login){
+    window.location.reload();
+  }
   return (
     <div className="App">
       <BrowserRouter >

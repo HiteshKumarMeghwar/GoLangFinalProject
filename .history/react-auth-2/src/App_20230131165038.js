@@ -30,6 +30,10 @@ function App() {
     setUserData(parseUser);
   }, [setUserData]);
 
+  if(login){
+    window.location.reload();
+  }
+  
   return (
     <div className="App">
       <BrowserRouter >

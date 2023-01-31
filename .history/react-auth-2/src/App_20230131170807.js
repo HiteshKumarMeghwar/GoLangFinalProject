@@ -36,7 +36,9 @@ function App() {
         <Nav userData={userData} login={login} />
         <main className="form-signin">
           <Routes>
-            <Route exact path='/' element={<Home />} />
+            {userData && 
+              <Route exact path='/' element={<Home />} />
+            }
             <Route exact path='/profile' element={<UserProfile />} />
             <Route exact path='/edit_profile/:id' element={<EditProfile />} />
             <Route exact path='/edit_user/:id' element={<EditUser />} />

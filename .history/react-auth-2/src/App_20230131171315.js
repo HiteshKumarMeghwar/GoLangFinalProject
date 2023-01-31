@@ -33,6 +33,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter >
+        {userData && 
+          <App />
+        }
         <Nav userData={userData} login={login} />
         <main className="form-signin">
           <Routes>

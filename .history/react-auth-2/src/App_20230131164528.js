@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import './App.css';
 import Nav from './components/Nav';
-// import Navv from './components/Navv';
+import Navv from './components/Navv';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -33,7 +33,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter >
-        <Nav userData={userData} login={login} />
+        {!login &&
+          <Navv/>
+        }
+        {login &&
+          <Nav userData={userData} login={login} />
+        }
         <main className="form-signin">
           <Routes>
             <Route exact path='/' element={<Home />} />

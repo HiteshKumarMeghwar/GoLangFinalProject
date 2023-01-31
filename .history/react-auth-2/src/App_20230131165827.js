@@ -19,17 +19,23 @@ import ContactUs from './pages/ContactUs';
 
 function App() {
   const [userData, setUserData] = useState();
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState("No");
   // window.location.reload();
   useEffect(() => {
     const User = localStorage.getItem("user");
     if (User) {
-      setLogin(true);
+      if(login === "No"){
+        setLogin("yes");
+      }
     }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
   }, [setUserData]);
 
+  if(login === "yes"){
+    setLogin("hitesh");
+    // window.location.reload();
+  }
   return (
     <div className="App">
       <BrowserRouter >
