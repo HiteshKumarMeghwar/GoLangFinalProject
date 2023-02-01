@@ -13,8 +13,6 @@ function Register() {
   useEffect(() => {
     let User = localStorage.getItem("user");
     if(!User){
-      navigate("/register")
-    }else {
       navigate("/login")
     }
   }, [navigate])

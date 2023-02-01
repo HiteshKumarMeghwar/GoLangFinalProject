@@ -7,6 +7,9 @@ export default function EditUser() {
     const [message, setMessage] = useState();
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState();
+    const [admin, setAdmin] = useState("");
+    const [author, setAuthor] = useState("");
+    const [student, setStudent] = useState("");
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -82,6 +85,14 @@ export default function EditUser() {
         });
         // console.log(data);
     };
+
+    if(userData?.role_id === 1){
+        setAdmin("selected")
+    }else if(userData?.role_id === 2) {
+        setAuthor("selected");
+    }else {
+        setStudent("selected");
+    }
 
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">

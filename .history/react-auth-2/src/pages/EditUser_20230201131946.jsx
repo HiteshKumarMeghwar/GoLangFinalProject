@@ -7,6 +7,9 @@ export default function EditUser() {
     const [message, setMessage] = useState();
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState();
+    const [admin, setAdmin] = useState("");
+    const [author, setAuthor] = useState("");
+    const [student, setStudent] = useState("");
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -41,6 +44,16 @@ export default function EditUser() {
                 // handle access .....
                 setLoading(false);
                 setUserData(response?.data?.data)
+                if(userData?.role_id === 1){
+                    setAdmin("selected")
+                    console.log(admin)
+                }else if(userData?.role_id === 2) {
+                    setAuthor("selected");
+                    console.log(author)
+                }else {
+                    setStudent("selected");
+                    console.log(student)
+                }
             }).catch(function(error) {
                 // handle error
                 setLoading(false);

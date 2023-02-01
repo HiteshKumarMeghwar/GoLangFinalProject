@@ -13,7 +13,7 @@ function Nav(props) {
         // handle access .....
         localStorage.removeItem("token")
         localStorage.removeItem("user")
-        window.location.reload();
+        // window.location.reload();
         navigate("/login");
     }).catch(function(error) {
         // handle error

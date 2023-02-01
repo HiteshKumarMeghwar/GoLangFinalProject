@@ -7,6 +7,9 @@ export default function EditUser() {
     const [message, setMessage] = useState();
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState();
+    const [admin, setAdmin] = useState("");
+    const [author, setAuthor] = useState("");
+    const [student, setStudent] = useState("");
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -82,6 +85,14 @@ export default function EditUser() {
         });
         // console.log(data);
     };
+
+    if(userData?.role_id === 1){
+        setAdmin("selected")
+    }else if(userData?.role_id === 2) {
+        setAuthor("selected");
+    }else {
+        setStudent("selected");
+    }
 
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -254,9 +265,9 @@ export default function EditUser() {
                             id="role_id"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
-                            <option value="1"  >Admin</option>
-                            <option value="2"  >Author</option>
-                            <option value="3"  >Student</option>
+                            <option value="1" {...userData?.role_id === 1 ? admin : ""} >Admin</option>
+                            <option value="2" {...userData?.role_id === 2 ? author : ""} >Author</option>
+                            <option value="3" {...userData?.role_id === 3 ? student : ""} >Student</option>
                         </select>
                     </div>
                     <div className="mt-6">

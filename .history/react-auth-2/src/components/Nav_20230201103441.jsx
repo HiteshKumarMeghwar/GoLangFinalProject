@@ -1,10 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import axios from 'axios'
 // import {useSnackbar} from 'react-simple-snackbar'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Nav(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if(token){
+      setIsLoggedIn(true);
+    }
+  }, [])
 
   const logOut = async () => {
     await axios.post(`http://127.0.0.1:8080/api/logout`, 
@@ -13,7 +21,7 @@ function Nav(props) {
         // handle access .....
         localStorage.removeItem("token")
         localStorage.removeItem("user")
-        window.location.reload();
+        // window.location.reload();
         navigate("/login");
     }).catch(function(error) {
         // handle error
@@ -36,6 +44,15 @@ function Nav(props) {
             </button>
             <div className="hidden w-full md:block md:w-auto" id="navbar-default">
               <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                {isLoggedIn ? (
+                  <li>
+                  <p>LoggedIn</p>
+                </li>
+                ) : (
+                  <li>
+                    <p>Not LoggedIn</p>
+                  </li>
+                )}
                 {props.userData && props.userData.role_id === 1 && (
                     <>
                       <li>

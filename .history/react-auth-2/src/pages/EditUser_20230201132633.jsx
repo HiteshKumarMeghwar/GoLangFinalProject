@@ -54,7 +54,7 @@ export default function EditUser() {
             navigate("/login")
         }
         singleUser();
-    }, [navigate, id]);
+    }, [navigate, id, admin, author, student, userData]);
 
     const onSubmit = (data) => {
         setLoading(true);

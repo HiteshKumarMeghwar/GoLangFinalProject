@@ -254,9 +254,9 @@ export default function EditUser() {
                             id="role_id"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
-                            <option value="1"  >Admin</option>
-                            <option value="2"  >Author</option>
-                            <option value="3"  >Student</option>
+                            <option value="1" {...userData?.role_id === 1 && selected} >Admin</option>
+                            <option value="2" {...userData?.role_id === 2 && selected} >Author</option>
+                            <option value="3" {...userData?.role_id === 3 && selected} >Student</option>
                         </select>
                     </div>
                     <div className="mt-6">
