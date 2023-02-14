@@ -268,10 +268,7 @@ export default function EditUser() {
                         <select 
                             name="role_id" 
                             id="role_id"
-                            {...register("role_id", {
-                                required: true,
-                            })}
-                            // defaultValue={userData?.role_id}
+                            
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
                             <option value="1" selected={userData?.role_id === 1} >Admin</option>

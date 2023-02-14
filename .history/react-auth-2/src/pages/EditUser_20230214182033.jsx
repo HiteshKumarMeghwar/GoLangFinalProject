@@ -64,7 +64,7 @@ export default function EditUser() {
             email: data.email,
             password: data.password,
             phone: data.phone,
-            role_id: data.role_id
+            role_id: data.user_id
         }
         console.log(body);
         return
@@ -119,17 +119,6 @@ export default function EditUser() {
                             required: true,
                             })}
                             defaultValue={userData?.first_name}
-                        />
-                        <input
-                            type="hidden"
-                            name="user_id"
-                            id='user_id'
-                            // autoComplete='on'
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                            {...register("user_id", {
-                            required: true,
-                            })}
-                            defaultValue={userData?.id}
                         />
                         <div>
                         {errors.first_name && errors.first_name.type === "required" && (
@@ -268,16 +257,13 @@ export default function EditUser() {
                         <select 
                             name="role_id" 
                             id="role_id"
-                            {...register("role_id", {
-                                required: true,
-                            })}
-                            // defaultValue={userData?.role_id}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
                             <option value="1" selected={userData?.role_id === 1} >Admin</option>
                             <option value="2" selected={userData?.role_id === 2} >Author</option>
                             <option value="3" selected={userData?.role_id === 3} >Student</option>
                         </select>
+                        <input type="hidden" name="user_id" id="user_id" value={userData?.password} />
                     </div>
                     <div className="mt-6">
                         <button className={`w-full ${

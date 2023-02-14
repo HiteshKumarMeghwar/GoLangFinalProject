@@ -214,6 +214,16 @@ func UpdateUser(c *fiber.Ctx) error {
 		Id: uint(id),
 	}
 
+	payload := struct {
+		RoleId int `json:"role_id"`
+	}{}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return err
+	}
+
+	user.RoleId = payload.RoleId
+
 	if err := c.BodyParser(&user); err != nil {
 		fmt.Println("Unable to parse body")
 	}

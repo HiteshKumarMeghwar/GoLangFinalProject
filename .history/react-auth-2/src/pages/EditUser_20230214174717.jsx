@@ -66,8 +66,8 @@ export default function EditUser() {
             phone: data.phone,
             role_id: data.role_id
         }
-        console.log(body);
-        return
+        // console.log(body);
+        // return
         axios.put(`http://127.0.0.1:8080/api/updateUser/${id}`, body)
         .then(function(response) {
             // handle access .....
@@ -119,17 +119,6 @@ export default function EditUser() {
                             required: true,
                             })}
                             defaultValue={userData?.first_name}
-                        />
-                        <input
-                            type="hidden"
-                            name="user_id"
-                            id='user_id'
-                            // autoComplete='on'
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                            {...register("user_id", {
-                            required: true,
-                            })}
-                            defaultValue={userData?.id}
                         />
                         <div>
                         {errors.first_name && errors.first_name.type === "required" && (
@@ -260,7 +249,7 @@ export default function EditUser() {
                     </div>
                     <div className="mb-2">
                         <label
-                            for="role_id"
+                            for="role_id" 
                             className="block text-sm font-semibold text-gray-800"
                         >
                             User Role
@@ -268,10 +257,6 @@ export default function EditUser() {
                         <select 
                             name="role_id" 
                             id="role_id"
-                            {...register("role_id", {
-                                required: true,
-                            })}
-                            // defaultValue={userData?.role_id}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
                             <option value="1" selected={userData?.role_id === 1} >Admin</option>
