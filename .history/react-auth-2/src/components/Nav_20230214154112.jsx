@@ -6,6 +6,9 @@ import { Link, useNavigate } from 'react-router-dom'
 function Nav(props) {
   const navigate = useNavigate();
 
+  if (props?.userData){
+    window.location.reload();
+  }
   const logOut = async () => {
     await axios.post(`http://127.0.0.1:8080/api/logout`, 
     {withCredentials: true

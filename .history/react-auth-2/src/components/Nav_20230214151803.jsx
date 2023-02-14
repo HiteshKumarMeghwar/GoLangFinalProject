@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import axios from 'axios'
 // import {useSnackbar} from 'react-simple-snackbar'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Nav(props) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+      const User = localStorage.getItem("user");
+      if(!User) {
+          navigate("/")
+      }
+  }, [navigate]);
 
   const logOut = async () => {
     await axios.post(`http://127.0.0.1:8080/api/logout`, 
@@ -13,8 +20,8 @@ function Nav(props) {
         // handle access .....
         localStorage.removeItem("token")
         localStorage.removeItem("user")
-        navigate("/login");
         window.location.reload();
+        navigate("/login");
     }).catch(function(error) {
         // handle error
         console.log(error)

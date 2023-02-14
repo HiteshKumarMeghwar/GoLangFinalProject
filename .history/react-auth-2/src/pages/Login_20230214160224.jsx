@@ -15,7 +15,7 @@ export default function Login() {
         if(User) {
             navigate("/", message)
         }
-    }, [navigate, message]);
+    }, [navigate]);
 
     const {
         register,

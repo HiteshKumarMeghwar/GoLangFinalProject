@@ -13,8 +13,8 @@ function Nav(props) {
         // handle access .....
         localStorage.removeItem("token")
         localStorage.removeItem("user")
-        navigate("/login");
         window.location.reload();
+        navigate("/");
     }).catch(function(error) {
         // handle error
         console.log(error)

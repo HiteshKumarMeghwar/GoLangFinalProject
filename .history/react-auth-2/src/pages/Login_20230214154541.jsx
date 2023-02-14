@@ -13,9 +13,9 @@ export default function Login() {
     useEffect(() => {
         const User = localStorage.getItem("user");
         if(User) {
-            navigate("/", message)
+            navigate("/")
         }
-    }, [navigate, message]);
+    }, [navigate]);
 
     const {
         register,

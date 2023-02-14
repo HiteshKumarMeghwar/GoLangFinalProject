@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-// window.location.reload();
+window.location.reload();
 function Home() {
-  // window.location.reload();
   const [userData, setUserData] = useState();
   const [blogData, setBlogData] = useState();
   const [loading, setLoading] = useState(false);

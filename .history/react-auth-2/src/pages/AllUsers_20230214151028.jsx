@@ -5,7 +5,6 @@ import { useNavigate, Link } from 'react-router-dom'
 
 function AllUsers() {
     const [allUsersData, setAllUsersData] = useState();
-    const [user, setUser] = useState();
     const [loading, setLoading] = useState(false);
     const [deleteLoading, setDeleteLoading] = useState(false);
     const navigate = useNavigate();
@@ -31,7 +30,6 @@ function AllUsers() {
         setLoading(true); 
         let User = localStorage.getItem("user")
         User = JSON.parse(User)
-        setUser(User)
         let body = {
             id : JSON.stringify(User.id),
         }
@@ -124,17 +122,15 @@ function AllUsers() {
                                             {deleteLoading ? "Loading" : "Delete"}
                                         </button>
                                     </div>
-                                    {user?.role_id === 1 &&
-                                        <div>
-                                            <Link to={`/edit_user/${blog.id}`}>
-                                                <button 
-                                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                >
-                                                    Edit
-                                                </button>
-                                            </Link>
-                                        </div>
-                                    }
+                                    <div>
+                                        <Link to={`/edit_user/${blog.id}`}>
+                                            <button 
+                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                            >
+                                                Edit
+                                            </button>
+                                        </Link>
+                                    </div>
                                 </footer>
                             </article>
                         </div>
