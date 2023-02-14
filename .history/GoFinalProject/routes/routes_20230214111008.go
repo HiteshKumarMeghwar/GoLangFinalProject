@@ -20,7 +20,7 @@ func Setup(app *fiber.App) {
 	app.Put("/api/updatepost/:id", controllers.UpdatePost)
 	app.Post("/api/uniquepost", controllers.UniquePost)
 	app.Delete("/api/deletepost/:id", controllers.DeletePost)
-	app.Post("/api/sendMail/:id", controllers.SendMail)
+	app.Post("/api/sendMail", controllers.SendMail)
 
 	// Image upload route for practice ..................
 	app.Post("/api/upload-image", controllers.Upload)

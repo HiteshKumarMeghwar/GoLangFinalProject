@@ -205,7 +205,7 @@ function ContactUs() {
                     <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Send me a copy of this
                         message</label>
                     </div> */}
-                    <input type="hidden" value={userId} name="user_id" />
+                    <input type="hidden" value={`${userId}`} name="user_id" />
                     <button type="submit" className={`
                     w-full
                     px-6

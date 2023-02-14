@@ -48,6 +48,5 @@ func Connect() {
 	connection.AutoMigrate(
 		&models.User{},
 		&models.Blog{},
-		&models.Mail{},
 	)
 }

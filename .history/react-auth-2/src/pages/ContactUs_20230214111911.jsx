@@ -19,6 +19,7 @@ function ContactUs() {
         } 
         User = JSON.parse(User)
         setUserId(User.id)
+        console.log(userId)
         if(User.role_id === 1) {
             navigate("/")
         }else if(User.role_id === 2) {
@@ -57,7 +58,7 @@ function ContactUs() {
     }
     // console.log(body);
     // return
-    axios.post(`http://127.0.0.1:8080/api/sendMail/${userId}`, { ...body}).then(function(response) {
+    axios.post(`http://127.0.0.1:8080/api/sendMail`, { ...body}).then(function(response) {
         // handle access .....
         setLoading(false);
         setMessage(response?.data?.message);
@@ -205,7 +206,7 @@ function ContactUs() {
                     <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Send me a copy of this
                         message</label>
                     </div> */}
-                    <input type="hidden" value={userId} name="user_id" />
+                    <input type="hidden" value={`${userId}`} name="user_id" />
                     <button type="submit" className={`
                     w-full
                     px-6

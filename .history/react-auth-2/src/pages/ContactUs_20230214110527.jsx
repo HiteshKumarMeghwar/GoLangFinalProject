@@ -57,7 +57,7 @@ function ContactUs() {
     }
     // console.log(body);
     // return
-    axios.post(`http://127.0.0.1:8080/api/sendMail/${userId}`, { ...body}).then(function(response) {
+    axios.post(`http://127.0.0.1:8080/api/sendMail`, { ...body}).then(function(response) {
         // handle access .....
         setLoading(false);
         setMessage(response?.data?.message);

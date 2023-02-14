@@ -2,13 +2,12 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {useForm} from 'react-hook-form'
 // import {useSnackbar} from 'react-simple-snackbar'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 function ContactUs() {
 
     const [message, setMessage] = useState();
-    const [userId, setUserId] = useState();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -18,7 +17,6 @@ function ContactUs() {
             navigate("/login")
         } 
         User = JSON.parse(User)
-        setUserId(User.id)
         if(User.role_id === 1) {
             navigate("/")
         }else if(User.role_id === 2) {
@@ -57,7 +55,7 @@ function ContactUs() {
     }
     // console.log(body);
     // return
-    axios.post(`http://127.0.0.1:8080/api/sendMail/${userId}`, { ...body}).then(function(response) {
+    axios.post(`http://127.0.0.1:8080/api/register`, { ...body}).then(function(response) {
         // handle access .....
         setLoading(false);
         setMessage(response?.data?.message);
@@ -205,7 +203,6 @@ function ContactUs() {
                     <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Send me a copy of this
                         message</label>
                     </div> */}
-                    <input type="hidden" value={userId} name="user_id" />
                     <button type="submit" className={`
                     w-full
                     px-6
