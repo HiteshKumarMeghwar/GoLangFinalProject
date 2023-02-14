@@ -26,12 +26,12 @@ func SendMail(c *fiber.Ctx) error {
 
 	// send with gomail
 	m := gomail.NewMessage()
-	m.SetHeader("From", mailData.Email)
+	m.SetHeader("From", "hiteshkumarkunri@gmail.com")
 	m.SetHeader("To", "hiteshkumarkunri@gmail.com")
 	// m.SetAddressHeader("Cc", "dan@example.com", "Dan")
-	m.SetHeader("Subject", mailData.Name)
-	m.SetBody("text/html", mailData.Message)
-	m.Attach("./uploads/dafpl_books-3.jpg")
+	m.SetHeader("Subject", "Hello!")
+	m.SetBody("text/html", "Hello <b>Bob</b> and <i>Cora</i>!")
+	m.Attach("../uploads/dafpl_books-3.jpg")
 
 	d := gomail.NewDialer("smtp.gmail.com", 587, "hiteshkumarkunri@gmail.com", "onrqhkudckxmmxku")
 
@@ -41,7 +41,6 @@ func SendMail(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"message": "Opps, Your mail has not been sent ...!",
 		})
-		// panic(err)
 	}
 	return c.JSON(fiber.Map{
 		"message": "Congratulations, Your mail has been sent ...!",

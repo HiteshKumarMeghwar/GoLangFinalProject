@@ -6,7 +6,7 @@ import (
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/gofiber/fiber/v2"
-	gomail "gopkg.in/gomail.v2"
+	"gopkg.in/gomail.v2"
 )
 
 func SendMail(c *fiber.Ctx) error {
@@ -26,22 +26,20 @@ func SendMail(c *fiber.Ctx) error {
 
 	// send with gomail
 	m := gomail.NewMessage()
-	m.SetHeader("From", mailData.Email)
+	m.SetHeader("From", "hiteshkumarkunri@gmail.com")
 	m.SetHeader("To", "hiteshkumarkunri@gmail.com")
-	// m.SetAddressHeader("Cc", "dan@example.com", "Dan")
-	m.SetHeader("Subject", mailData.Name)
-	m.SetBody("text/html", mailData.Message)
-	m.Attach("./uploads/dafpl_books-3.jpg")
+	m.SetAddressHeader("Cc", "dan@example.com", "Dan")
+	m.SetHeader("Subject", "Hello!")
+	m.SetBody("text/html", "Hello <b>Bob</b> and <i>Cora</i>!")
+	m.Attach("../uploads/dafpl_books-3.jpg")
 
 	d := gomail.NewDialer("smtp.gmail.com", 587, "hiteshkumarkunri@gmail.com", "onrqhkudckxmmxku")
 
 	// Send the email to Bob, Cora and Dan.
-	err := d.DialAndSend(m)
-	if err != nil {
+	if err := d.DialAndSend(m); err != nil {
 		return c.JSON(fiber.Map{
 			"message": "Opps, Your mail has not been sent ...!",
 		})
-		// panic(err)
 	}
 	return c.JSON(fiber.Map{
 		"message": "Congratulations, Your mail has been sent ...!",

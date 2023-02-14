@@ -38,10 +38,10 @@ func SendMail(c *fiber.Ctx) error {
 	// Send the email to Bob, Cora and Dan.
 	err := d.DialAndSend(m)
 	if err != nil {
-		return c.JSON(fiber.Map{
+		/* return c.JSON(fiber.Map{
 			"message": "Opps, Your mail has not been sent ...!",
-		})
-		// panic(err)
+		}) */
+		panic(err)
 	}
 	return c.JSON(fiber.Map{
 		"message": "Congratulations, Your mail has been sent ...!",

@@ -31,17 +31,14 @@ func SendMail(c *fiber.Ctx) error {
 	// m.SetAddressHeader("Cc", "dan@example.com", "Dan")
 	m.SetHeader("Subject", mailData.Name)
 	m.SetBody("text/html", mailData.Message)
-	m.Attach("./uploads/dafpl_books-3.jpg")
+	m.Attach("../uploads/dafpl_books-3.jpg")
 
 	d := gomail.NewDialer("smtp.gmail.com", 587, "hiteshkumarkunri@gmail.com", "onrqhkudckxmmxku")
 
 	// Send the email to Bob, Cora and Dan.
 	err := d.DialAndSend(m)
 	if err != nil {
-		return c.JSON(fiber.Map{
-			"message": "Opps, Your mail has not been sent ...!",
-		})
-		// panic(err)
+		panic(err)
 	}
 	return c.JSON(fiber.Map{
 		"message": "Congratulations, Your mail has been sent ...!",

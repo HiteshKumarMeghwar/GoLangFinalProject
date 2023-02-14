@@ -41,7 +41,6 @@ func SendMail(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"message": "Opps, Your mail has not been sent ...!",
 		})
-		// panic(err)
 	}
 	return c.JSON(fiber.Map{
 		"message": "Congratulations, Your mail has been sent ...!",
