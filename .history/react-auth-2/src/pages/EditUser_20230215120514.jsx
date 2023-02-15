@@ -58,16 +58,10 @@ export default function EditUser() {
 
     const onSubmit = (data) => {
         setLoading(true);
-        let role = parseInt(data.role_id, 10)
         const body = {
-            first_name: data.first_name,
-            last_name: data.last_name,
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            role_id: role
+            ...data
         }
-        // console.log(body);
+        console.log(body);
         // return
         axios.put(`http://127.0.0.1:8080/api/updateUser/${id}`, body)
         .then(function(response) {
@@ -269,10 +263,6 @@ export default function EditUser() {
                         <select 
                             name="role_id" 
                             id="role_id"
-                            {...register("role_id", {
-                                required: true,
-                            })}
-                            // defaultValue={userData?.role_id}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
                             <option value="1" selected={userData?.role_id === 1} >Admin</option>
@@ -281,7 +271,7 @@ export default function EditUser() {
                         </select>
                     </div>
                     <div className="mt-6">
-                        <button className={`w-full ${
+                        <button type='submit' className={`w-full ${
                         loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-700"
                         } text-white font-bold py-2 px-4 rounded`}
                         disabled={loading ? true : false}

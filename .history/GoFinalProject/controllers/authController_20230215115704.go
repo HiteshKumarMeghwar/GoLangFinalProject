@@ -210,6 +210,7 @@ func UpdateProfile(c *fiber.Ctx) error {
 
 func UpdateUser(c *fiber.Ctx) error {
 	id, _ := strconv.Atoi(c.Params("id"))
+	roleID := c.FormValue("role_id")
 	user := models.User{
 		Id: uint(id),
 	}
@@ -219,10 +220,10 @@ func UpdateUser(c *fiber.Ctx) error {
 	}
 
 	database.DB.Model(&user).Updates(user)
-	// roleID := user.RoleId
+
 	return c.JSON(fiber.Map{
 		"message": "post updated successfully ... !",
-		// "user":    roleID,
+		"user":    roleID,
 	})
 }
 

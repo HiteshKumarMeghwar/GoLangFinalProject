@@ -218,11 +218,11 @@ func UpdateUser(c *fiber.Ctx) error {
 		fmt.Println("Unable to parse body")
 	}
 
-	database.DB.Model(&user).Updates(user)
-	// roleID := user.RoleId
+	// database.DB.Model(&user).Updates(user)
+	roleID := user.FirstName
 	return c.JSON(fiber.Map{
 		"message": "post updated successfully ... !",
-		// "user":    roleID,
+		"user":    roleID,
 	})
 }
 

@@ -76,7 +76,7 @@ export default function EditUser() {
             setMessage(response?.data?.message);
             // openSnackbar(response?.data?.message);
             console.log(response?.data?.user)
-            navigate("/all_users");
+            // navigate("/all_users");
         }).catch(function(error) {
             // handle error
             setLoading(false);

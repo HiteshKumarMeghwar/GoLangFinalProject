@@ -58,17 +58,11 @@ export default function EditUser() {
 
     const onSubmit = (data) => {
         setLoading(true);
-        let role = parseInt(data.role_id, 10)
         const body = {
-            first_name: data.first_name,
-            last_name: data.last_name,
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            role_id: role
+            ...data
         }
-        // console.log(body);
-        // return
+        console.log(body);
+        return
         axios.put(`http://127.0.0.1:8080/api/updateUser/${id}`, body)
         .then(function(response) {
             // handle access .....
@@ -121,7 +115,7 @@ export default function EditUser() {
                             })}
                             defaultValue={userData?.first_name}
                         />
-                        {/* <input
+                        <input
                             type="hidden"
                             name="user_id"
                             id='user_id'
@@ -131,7 +125,7 @@ export default function EditUser() {
                             required: true,
                             })}
                             defaultValue={userData?.id}
-                        /> */}
+                        />
                         <div>
                         {errors.first_name && errors.first_name.type === "required" && (
                             <span

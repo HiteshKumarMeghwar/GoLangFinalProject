@@ -58,14 +58,13 @@ export default function EditUser() {
 
     const onSubmit = (data) => {
         setLoading(true);
-        let role = parseInt(data.role_id, 10)
         const body = {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email,
             password: data.password,
             phone: data.phone,
-            role_id: role
+            role_id: data.role_id
         }
         // console.log(body);
         // return
@@ -76,7 +75,7 @@ export default function EditUser() {
             setMessage(response?.data?.message);
             // openSnackbar(response?.data?.message);
             console.log(response?.data?.user)
-            navigate("/all_users");
+            // navigate("/all_users");
         }).catch(function(error) {
             // handle error
             setLoading(false);

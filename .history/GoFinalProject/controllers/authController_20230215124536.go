@@ -219,10 +219,10 @@ func UpdateUser(c *fiber.Ctx) error {
 	}
 
 	database.DB.Model(&user).Updates(user)
-	// roleID := user.RoleId
+	roleID := user.RoleId
 	return c.JSON(fiber.Map{
 		"message": "post updated successfully ... !",
-		// "user":    roleID,
+		"user":    roleID,
 	})
 }
 
