@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react'
-import { Link, useNavigate, useHistory } from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // window.location.reload();
 function Home() {
@@ -9,8 +9,6 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const navigate = useNavigate();
-  const history = useHistory();
-  const isMountedRef = useRef(false);
 
   const allBlog = async () => {
     setLoading(true);
@@ -33,21 +31,23 @@ function Home() {
     });
   }
 
+  /* const reload = () => {
+    window.location.reload();
+  }
+  var intervalID = setInterval(reload, 1000);
+  setTimeout(() => {
+    clearInterval(intervalID)
+  }, 1000); */
 
   useEffect(() => {
     const User = localStorage.getItem("user");
     if(!User) {
       navigate("/login")
     }
-    if(isMountedRef.current){
-      window.location.reload();
-    } else {
-      isMountedRef.current = true;
-    }
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
     allBlog();
-  }, [navigate, history.location.pathname]);
+  }, [navigate]);
 
   const deleteBtn = async (blog) => {
       setDeleteLoading(true);
