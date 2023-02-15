@@ -212,8 +212,7 @@ function Home() {
           </div>
         </>
       ) : (
-        // <Home onLogin={handleLogin} />
-        handleLogin()
+        <LoginPage onLogin={handleLogin} />
       )}
     </>
     

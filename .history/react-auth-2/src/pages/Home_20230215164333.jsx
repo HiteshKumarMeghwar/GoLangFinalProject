@@ -213,7 +213,7 @@ function Home() {
         </>
       ) : (
         // <Home onLogin={handleLogin} />
-        handleLogin()
+        handleLogin();
       )}
     </>
     
