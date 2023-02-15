@@ -47,7 +47,7 @@ function Home() {
     const parseUser = JSON.parse(User);
     setUserData(parseUser);
     allBlog();
-  }, [navigate]);
+  }, [navigate, history.location.pathname]);
 
   const deleteBtn = async (blog) => {
       setDeleteLoading(true);
