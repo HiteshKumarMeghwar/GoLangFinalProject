@@ -50,7 +50,7 @@ function App() {
             <Route exact path='/allpost/:id' element={<BlogDetail />} />
             <Route exact path='/create_post' element={<CreateBlog />} />
             <Route exact path='/edit_post/:id' element={<EditPost />} />
-            <Route exact path='/wheather_data' element={<Weather />} />
+            <Route exact path='/wheather_data/:location' element={<Weather />} />
           </Routes>
         </main>
       </BrowserRouter>

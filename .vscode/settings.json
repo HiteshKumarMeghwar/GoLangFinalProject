@@ -11,6 +11,7 @@
         "gofiber",
         "gomail",
         "gorm",
+        "jamshoro",
         "Meghwar",
         "Navv",
         "onrqhkudckxmmxku",
@@ -22,6 +23,7 @@
         "tidwall",
         "uniquepost",
         "updatepost",
-        "userid"
+        "userid",
+        "wheather"
     ]
 }
