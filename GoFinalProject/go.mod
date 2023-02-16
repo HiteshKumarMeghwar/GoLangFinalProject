@@ -10,6 +10,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.41.0
 	github.com/gorilla/sessions v1.2.1
 	github.com/joho/godotenv v1.4.0
+	github.com/tidwall/gjson v1.14.4
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 	gorm.io/driver/postgres v1.4.6
 	gorm.io/gorm v1.24.3
@@ -38,6 +39,8 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/stretchr/testify v1.8.1 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	golang.org/x/text v0.6.0 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 )

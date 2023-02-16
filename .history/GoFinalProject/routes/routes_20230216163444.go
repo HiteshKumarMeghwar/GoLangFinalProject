@@ -41,7 +41,6 @@ func Setup(app *fiber.App) {
 	app.Post("/api/getAllCommodities/:id", controllers.GetCommodityById)
 	app.Put("/api/updateCommodity/:id", controllers.UpdateCommodityById)
 	app.Delete("/api/deleteCommodity/:id", controllers.DeleteCommodityById)
-	// Weather API route ....
 	app.Post("/api/weatherData/:location", controllers.WeatherAPI)
 
 	// Test Cases routes ..............
