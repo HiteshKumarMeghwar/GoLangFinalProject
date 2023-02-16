@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form'
 
@@ -15,16 +15,9 @@ const Weather = () => {
     } = useForm();
 
     const fetchData = async () => {
-        const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
-        if(response) {
-            setWeatherData(response.data);
-            // setLoading(false)
-        }
-        /* if(response.data === weatherData.location){
-            setLoading(false)
-        } */
+        const response = await axios.post("http://localhost:8080/api/weatherData/$1",{searchWeather});
+        setWeatherData(response.data);
     };
-    fetchData();
 
     const onSubmit = (data) => {
         setLoading(true);
@@ -32,6 +25,10 @@ const Weather = () => {
         console.log(data?.name)
         fetchData();
     };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     if (!weatherData) {
         return <div className="text-2xl font-bold text-center px-56 pt-24">
@@ -56,9 +53,9 @@ const Weather = () => {
                     </div>
                 </div>
             </div>
-            <div className=" justify-center min-h-screen overflow-hidden pt-3">
+            <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
                 <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-                    <h1 className="text-3xl font-semibold text-center">
+                    <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
                     Search Any Location Weather Details
                     </h1>
                     <form method='POST' className="mt-6" onSubmit={handleSubmit(onSubmit)}>

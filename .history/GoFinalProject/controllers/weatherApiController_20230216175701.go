@@ -31,7 +31,7 @@ func WeatherAPI(c *fiber.Ctx) error {
 	data := gjson.ParseBytes(body)
 	weather := data.Get("weather.0.main").String()
 	weather_icon := data.Get("weather.0.icon").String()
-	my_location := data.Get("name").String()
+	my_location := data.Get("sys.name").String()
 	temp := data.Get("main.temp").Float()
 
 	// return weather data as JSON response

@@ -16,13 +16,8 @@ const Weather = () => {
 
     const fetchData = async () => {
         const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
-        if(response) {
-            setWeatherData(response.data);
-            // setLoading(false)
-        }
-        /* if(response.data === weatherData.location){
-            setLoading(false)
-        } */
+        setWeatherData(response.data);
+        setLoading(false)
     };
     fetchData();
 
@@ -56,9 +51,9 @@ const Weather = () => {
                     </div>
                 </div>
             </div>
-            <div className=" justify-center min-h-screen overflow-hidden pt-3">
+            <div className="justify-center min-h-screen overflow-hidden">
                 <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-                    <h1 className="text-3xl font-semibold text-center">
+                    <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
                     Search Any Location Weather Details
                     </h1>
                     <form method='POST' className="mt-6" onSubmit={handleSubmit(onSubmit)}>

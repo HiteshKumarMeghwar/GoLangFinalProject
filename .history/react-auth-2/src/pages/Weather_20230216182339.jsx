@@ -16,13 +16,8 @@ const Weather = () => {
 
     const fetchData = async () => {
         const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
-        if(response) {
-            setWeatherData(response.data);
-            // setLoading(false)
-        }
-        /* if(response.data === weatherData.location){
-            setLoading(false)
-        } */
+        setWeatherData(response.data);
+        // setLoading(false)
     };
     fetchData();
 

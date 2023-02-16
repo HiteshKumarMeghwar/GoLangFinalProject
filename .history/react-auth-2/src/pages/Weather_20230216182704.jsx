@@ -20,9 +20,9 @@ const Weather = () => {
             setWeatherData(response.data);
             // setLoading(false)
         }
-        /* if(response.data === weatherData.location){
+        if(response.data === weatherData.location){
             setLoading(false)
-        } */
+        }
     };
     fetchData();
 
