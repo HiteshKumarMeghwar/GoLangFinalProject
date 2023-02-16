@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"testing"
+
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/controllers"
 	"github.com/gofiber/fiber/v2"
 )
@@ -43,5 +45,5 @@ func Setup(app *fiber.App) {
 	app.Delete("/api/deleteCommodity/:id", controllers.DeleteCommodityById)
 
 	// Test Cases routes ..............
-	// app.Get("/api/testCase", controllers.TestAPI)
+	app.Get("/api/testCase", controllers.TestAPI(testing.TB))
 }
