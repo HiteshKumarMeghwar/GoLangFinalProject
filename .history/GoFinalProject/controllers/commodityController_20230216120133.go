@@ -1,13 +1,11 @@
 package controllers
 
 import (
-	"errors"
 	"strconv"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
 )
 
 func GetCommodities(c *fiber.Ctx) error {
@@ -39,36 +37,35 @@ func GetCommodityById(c *fiber.Ctx) error {
 }
 
 func UpdateCommodityById(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	commodity := models.Commodity{
-		Id: uint(id),
+	id := c.Params("id")
+	i, _ := strconv.Atoi(id)
+	uint := uint(i)
+	var commodities []models.Commodity
+	var updatedCommodity models.Commodity
+	if err := c.BodyParser(&updatedCommodity); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Cannot parse request body"})
 	}
-
-	if err := c.BodyParser(&commodity); err != nil {
-		return c.JSON(fiber.Map{
-			"message": "Commodity data not found ... !",
-		})
+	for i, commodity := range commodities {
+		if commodity.Id == uint {
+			// Update the commodity and return it
+			commodities[i] = updatedCommodity
+			return c.JSON(updatedCommodity)
+		}
 	}
-	database.DB.Model(&commodity).Updates(commodity)
-	return c.JSON(fiber.Map{
-		"message":   "Commodity updated successfully ... !",
-		"commodity": commodity,
-	})
+	return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Commodity not found"})
 }
 
 func DeleteCommodityById(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	commodity := models.Commodity{
-		Id: uint(id),
+	var commodities []models.Commodity
+	id := c.Params("id")
+	i, _ := strconv.Atoi(id)
+	uint := uint(i)
+	for i, commodity := range commodities {
+		if commodity.Id == uint {
+			// Remove the commodity from the slice
+			commodities = append(commodities[:i], commodities[i+1:]...)
+			return c.SendStatus(fiber.StatusNoContent)
+		}
 	}
-	deleteQuery := database.DB.Delete(&commodity)
-	if errors.Is(deleteQuery.Error, gorm.ErrRecordNotFound) {
-		c.Status(400)
-		return c.JSON(fiber.Map{
-			"message": "Opps!, record not found",
-		})
-	}
-	return c.JSON(fiber.Map{
-		"message": "Commodity deleted successfully ... !",
-	})
+	return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Commodity not found"})
 }

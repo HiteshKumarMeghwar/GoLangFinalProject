@@ -1,13 +1,11 @@
 package controllers
 
 import (
-	"errors"
 	"strconv"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
 )
 
 func GetCommodities(c *fiber.Ctx) error {
@@ -57,18 +55,16 @@ func UpdateCommodityById(c *fiber.Ctx) error {
 }
 
 func DeleteCommodityById(c *fiber.Ctx) error {
-	id, _ := strconv.Atoi(c.Params("id"))
-	commodity := models.Commodity{
-		Id: uint(id),
+	var commodities []models.Commodity
+	id := c.Params("id")
+	i, _ := strconv.Atoi(id)
+	uint := uint(i)
+	for i, commodity := range commodities {
+		if commodity.Id == uint {
+			// Remove the commodity from the slice
+			commodities = append(commodities[:i], commodities[i+1:]...)
+			return c.SendStatus(fiber.StatusNoContent)
+		}
 	}
-	deleteQuery := database.DB.Delete(&commodity)
-	if errors.Is(deleteQuery.Error, gorm.ErrRecordNotFound) {
-		c.Status(400)
-		return c.JSON(fiber.Map{
-			"message": "Opps!, record not found",
-		})
-	}
-	return c.JSON(fiber.Map{
-		"message": "Commodity deleted successfully ... !",
-	})
+	return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Commodity not found"})
 }
