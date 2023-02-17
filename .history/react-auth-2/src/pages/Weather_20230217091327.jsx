@@ -20,15 +20,18 @@ const Weather = () => {
             setWeatherData(response.data);
         }
     };
-    fetchData();
 
-    const onSubmit = (data) => {
+    fetchData();
+    
+    function onSubmit(data) {
         setLoading(true);
-        setSearchWeather(data?.name)
-        console.log(data?.name)
+        setSearchWeather(data?.name);
+        console.log(data?.name);
+        if (data?.name === weatherData) {
+            setLoading(false);
+        }
         fetchData();
-        setLoading(false)
-    };
+    }
 
     if (!weatherData) {
         return <div className="text-2xl font-bold text-center px-56 pt-24">

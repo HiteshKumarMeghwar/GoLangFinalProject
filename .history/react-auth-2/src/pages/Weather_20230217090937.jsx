@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form'
 
@@ -20,14 +20,19 @@ const Weather = () => {
             setWeatherData(response.data);
         }
     };
-    fetchData();
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     const onSubmit = (data) => {
         setLoading(true);
         setSearchWeather(data?.name)
         console.log(data?.name)
+        if(data?.name === weatherData){
+            setLoading(false)
+        }
         fetchData();
-        setLoading(false)
     };
 
     if (!weatherData) {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form'
 
@@ -14,21 +14,26 @@ const Weather = () => {
         formState: {errors},
     } = useForm();
 
-    const fetchData = async () => {
-        const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
-        if(response) {
-            setWeatherData(response.data);
-        }
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
+            if(response) {
+                setWeatherData(response.data);
+            }
+        };
+        fetchData();
+    }, [searchWeather])
     fetchData();
 
-    const onSubmit = (data) => {
+    function onSubmit(data) {
         setLoading(true);
-        setSearchWeather(data?.name)
-        console.log(data?.name)
-        fetchData();
-        setLoading(false)
-    };
+        setSearchWeather(data?.name);
+        console.log(data?.name);
+        if (data?.name === weatherData) {
+            setLoading(false);
+        }
+        // fetchData();
+    }
 
     if (!weatherData) {
         return <div className="text-2xl font-bold text-center px-56 pt-24">

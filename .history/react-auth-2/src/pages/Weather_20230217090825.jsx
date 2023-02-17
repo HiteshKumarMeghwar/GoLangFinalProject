@@ -26,8 +26,10 @@ const Weather = () => {
         setLoading(true);
         setSearchWeather(data?.name)
         console.log(data?.name)
+        if(data?.name === weatherData){
+            setLoading(false)
+        }
         fetchData();
-        setLoading(false)
     };
 
     if (!weatherData) {

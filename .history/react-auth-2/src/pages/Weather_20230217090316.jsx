@@ -18,6 +18,10 @@ const Weather = () => {
         const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
         if(response) {
             setWeatherData(response.data);
+            // setLoading(false)
+        }
+        if(response.data === weatherData.location){
+            setLoading(false)
         }
     };
     fetchData();
@@ -27,7 +31,6 @@ const Weather = () => {
         setSearchWeather(data?.name)
         console.log(data?.name)
         fetchData();
-        setLoading(false)
     };
 
     if (!weatherData) {
