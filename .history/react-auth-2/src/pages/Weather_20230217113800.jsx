@@ -15,23 +15,16 @@ const Weather = () => {
     } = useForm();
 
     const fetchData = async () => {
-        await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`)
-        .then(function(response) {
-            // handle access .....
+        const response = await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`);
+        if(response) {
             setWeatherData(response.data);
-            if(response.status === 200 && searchWeather === response.data.location){
-                setLoading(false);
-            }
-        }).catch(function(error) {
-            console.log(error)
-        })
+        }
     };
-    
     fetchData();
 
     const onSubmit = (data) => {
         setLoading(true);
-        setSearchWeather(data?.name);
+        setSearchWeather(data?.name)
         fetchData();
     };
 

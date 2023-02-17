@@ -19,14 +19,13 @@ const Weather = () => {
         .then(function(response) {
             // handle access .....
             setWeatherData(response.data);
-            if(response.status === 200 && searchWeather === response.data.location){
+            if(response.status === 200){
                 setLoading(false);
             }
         }).catch(function(error) {
             console.log(error)
         })
     };
-    
     fetchData();
 
     const onSubmit = (data) => {

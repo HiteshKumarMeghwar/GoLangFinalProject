@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form'
 
@@ -19,9 +19,6 @@ const Weather = () => {
         .then(function(response) {
             // handle access .....
             setWeatherData(response.data);
-            if(response.status === 200 && searchWeather === response.data.location){
-                setLoading(false);
-            }
         }).catch(function(error) {
             console.log(error)
         })
