@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef  } from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form'
 
@@ -12,7 +12,9 @@ const Weather = () => {
         handleSubmit,
         // watch,
         formState: {errors},
+        reset
     } = useForm();
+    const inputRef = useRef();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -81,6 +83,10 @@ const Weather = () => {
                                 {...register("name", {
                                 required: true,
                                 })}
+                                ref={(e) => {
+                                    inputRef.current = e;
+                                    register(e, { required: true });
+                                }}
                             />
                             <div>
                             {errors.name && errors.name.type === "required" && (

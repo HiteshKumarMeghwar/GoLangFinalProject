@@ -14,26 +14,29 @@ const Weather = () => {
         formState: {errors},
     } = useForm();
 
+    const fetchData = async () => {
+        await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`)
+        .then(function(response) {
+            // handle access .....
+            setWeatherData(response.data);
+            if(response.status === 200 && searchWeather === response.data.location){
+                setLoading(false);
+            }
+        }).catch(function(error) {
+            console.log(error)
+        })
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            await axios.post(`http://localhost:8080/api/weatherData/${searchWeather}`)
-            .then(function(response) {
-                // handle access .....
-                setWeatherData(response.data);
-                if(response.status === 200 && searchWeather === response.data.location){
-                    setLoading(false);
-                }
-            }).catch(function(error) {
-                console.log(error)
-            })
-        };
+
         fetchData();
-    }, [searchWeather])
+    }, [])
     
 
     const onSubmit = (data) => {
         setLoading(true);
         setSearchWeather(data?.name);
+        // fetchData();
     };
 
     if (!weatherData) {
@@ -76,7 +79,7 @@ const Weather = () => {
                                 type="text"
                                 name="name"
                                 id='name'
-                                // autoComplete='on'
+                                autoComplete='on'
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 {...register("name", {
                                 required: true,
