@@ -15,7 +15,7 @@ func TestPingRoute(t *testing.T) {
 	database.Connect() */
 	app := fiber.New()
 	routes.Setup(app) // Register the endpoints with the app
-	req := httptest.NewRequest(http.MethodPost, "/api/register", nil)
+	req := httptest.NewRequest(http.MethodGet, "/ping", nil)
 	resp, err := app.Test(req, -1)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
