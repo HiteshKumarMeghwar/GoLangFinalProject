@@ -7,7 +7,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
 )
@@ -17,7 +16,7 @@ func TestRegister(t *testing.T) {
 	routes.Setup(app)
 
 	// Create a new user to register
-	user := models.User{
+	/* user := models.User{
 		FirstName: "John",
 		LastName:  "Rocco",
 		Email:     "johnrocco@gmail.com",
@@ -25,9 +24,11 @@ func TestRegister(t *testing.T) {
 		Phone:     "54553445653244543",
 		// RoleId:    3,
 	}
+	*/
 
+	reqBody := []byte(`{"first_name": "John", "last_name": "Rocco", "email": "johnrocco@gmail.com", "password": "johnrocco", "phone" :"54553445653244543"}`)
 	// Convert user to JSON
-	userJson, err := json.Marshal(user)
+	userJson, err := json.Marshal(reqBody)
 	if err != nil {
 		t.Fatalf("Failed to marshal user: %v", err)
 	}

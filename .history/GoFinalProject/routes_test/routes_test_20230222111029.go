@@ -23,7 +23,7 @@ func TestRegister(t *testing.T) {
 		Email:     "johnrocco@gmail.com",
 		Password:  "johnrocco",
 		Phone:     "54553445653244543",
-		// RoleId:    3,
+		RoleId:    3,
 	}
 
 	// Convert user to JSON

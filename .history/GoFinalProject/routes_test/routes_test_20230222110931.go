@@ -3,6 +3,7 @@ package routes_test
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -23,7 +24,7 @@ func TestRegister(t *testing.T) {
 		Email:     "johnrocco@gmail.com",
 		Password:  "johnrocco",
 		Phone:     "54553445653244543",
-		// RoleId:    3,
+		RoleId:    3,
 	}
 
 	// Convert user to JSON
@@ -40,6 +41,7 @@ func TestRegister(t *testing.T) {
 		t.Fatalf("Failed to send request: %v", err)
 	}
 	defer resp.Body.Close()
+	fmt.Println(resp)
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
