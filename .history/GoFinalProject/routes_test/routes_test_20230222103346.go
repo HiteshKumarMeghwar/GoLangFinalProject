@@ -33,7 +33,7 @@ func TestRegister(t *testing.T) {
 	}
 
 	// Make a POST request to register endpoint
-	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewReader(userJson))
+	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewBuffer(userJson))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
@@ -46,7 +46,7 @@ func TestRegister(t *testing.T) {
 	}
 }
 
-/* func TestLogin(t *testing.T) {
+func TestLogin(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
@@ -74,6 +74,6 @@ func TestRegister(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
-} */
+}
 
 // Write test cases for the other routes as well

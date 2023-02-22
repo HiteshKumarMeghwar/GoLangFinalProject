@@ -8,13 +8,13 @@ import (
 	"testing"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
-	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
 )
 
 func TestRegister(t *testing.T) {
-	app := fiber.New()
-	routes.Setup(app)
+	// app := fiber.New()
+	// routes.Setup(app)
+	app * fiber.App
 
 	// Create a new user to register
 	user := models.User{

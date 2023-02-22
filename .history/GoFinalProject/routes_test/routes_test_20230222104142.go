@@ -33,7 +33,7 @@ func TestRegister(t *testing.T) {
 	}
 
 	// Make a POST request to register endpoint
-	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewReader(userJson))
+	req := httptest.NewRequest("POST", "/api/register", bytes.NewReader(userJson))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {

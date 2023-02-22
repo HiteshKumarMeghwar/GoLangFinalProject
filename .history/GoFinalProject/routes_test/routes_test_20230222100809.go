@@ -1,10 +1,7 @@
 package routes_test
 
 import (
-	"bytes"
-	"encoding/json"
-	"net/http"
-	"net/http/httptest"
+	"fmt"
 	"testing"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
@@ -26,7 +23,9 @@ func TestRegister(t *testing.T) {
 		RoleId:    3,
 	}
 
-	// Convert user to JSON
+	fmt.Println(user)
+	return
+	/* // Convert user to JSON
 	userJson, err := json.Marshal(user)
 	if err != nil {
 		t.Fatalf("Failed to marshal user: %v", err)
@@ -43,7 +42,7 @@ func TestRegister(t *testing.T) {
 
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
+	} */
 }
 
 /* func TestLogin(t *testing.T) {
@@ -74,6 +73,6 @@ func TestRegister(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
-} */
-
+}
+*/
 // Write test cases for the other routes as well

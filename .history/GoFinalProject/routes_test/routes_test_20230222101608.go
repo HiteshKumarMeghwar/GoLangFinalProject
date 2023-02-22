@@ -26,16 +26,18 @@ func TestRegister(t *testing.T) {
 		RoleId:    3,
 	}
 
+	// fmt.Println(user)
 	// Convert user to JSON
 	userJson, err := json.Marshal(user)
 	if err != nil {
 		t.Fatalf("Failed to marshal user: %v", err)
 	}
 
+	// fmt.Println(userJson)
 	// Make a POST request to register endpoint
 	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewReader(userJson))
 	req.Header.Set("Content-Type", "application/json")
-	resp, err := app.Test(req, -1)
+	resp, err := app.Test(req)
 	if err != nil {
 		t.Fatalf("Failed to send request: %v", err)
 	}
@@ -74,6 +76,6 @@ func TestRegister(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
-} */
-
+}
+*/
 // Write test cases for the other routes as well

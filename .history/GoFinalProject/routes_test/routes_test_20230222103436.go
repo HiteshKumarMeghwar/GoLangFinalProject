@@ -46,7 +46,7 @@ func TestRegister(t *testing.T) {
 	}
 }
 
-/* func TestLogin(t *testing.T) {
+func TestLogin(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
@@ -74,6 +74,6 @@ func TestRegister(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
-} */
+}
 
 // Write test cases for the other routes as well

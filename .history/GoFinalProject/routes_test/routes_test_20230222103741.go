@@ -7,7 +7,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
 )
@@ -17,7 +16,23 @@ func TestRegister(t *testing.T) {
 	routes.Setup(app)
 
 	// Create a new user to register
-	user := models.User{
+	/* user := models.User{
+		FirstName: "John",
+		LastName:  "Rocco",
+		Email:     "johnrocco@gmail.com",
+		Password:  "johnrocco",
+		Phone:     "54553445653244543",
+		RoleId:    3,
+	} */
+	type User struct {
+		FirstName string
+		LastName  string
+		Email     string
+		Password  string
+		Phone     string
+		RoleId    int
+	}
+	user := User{
 		FirstName: "John",
 		LastName:  "Rocco",
 		Email:     "johnrocco@gmail.com",
