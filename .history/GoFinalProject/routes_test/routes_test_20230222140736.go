@@ -145,7 +145,7 @@ func TestSingleCommodities(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
-	req, err := http.NewRequest("POST", "/api/getAllCommodities/3", nil)
+	req, err := http.NewRequest("GET", "/api/getAllCommodities/3", nil)
 	if err != nil {
 		t.Fatal(err)
 	}

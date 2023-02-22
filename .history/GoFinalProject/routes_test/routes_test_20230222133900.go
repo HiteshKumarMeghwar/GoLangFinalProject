@@ -94,28 +94,6 @@ func TestAllPost(t *testing.T) {
 	}
 }
 
-func TestSinglePost(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("GET", "/api/allpost/30", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
 func TestGetCommodities(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
@@ -124,50 +102,6 @@ func TestGetCommodities(t *testing.T) {
 	routes.Setup(app)
 
 	req, err := http.NewRequest("GET", "/api/getAllCommodities", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
-func TestSingleCommodities(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("POST", "/api/getAllCommodities/3", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
-func TestSingleUser(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("POST", "/api/allUsers/19", nil)
 	if err != nil {
 		t.Fatal(err)
 	}

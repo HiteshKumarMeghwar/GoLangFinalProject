@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 
@@ -37,7 +38,7 @@ func Connect() {
 	} */
 	cfg := PostgresConfig{
 		Host:     "localhost",
-		Port:     "5432",
+		Port:     os.Getenv("PORT"),
 		User:     "postgres",
 		Password: "Hitesh@1230",
 		Database: "go_final_project",

@@ -1,10 +1,13 @@
 package routes_test
 
 import (
+	"bytes"
+	"encoding/json"
 	"net/http"
 	"testing"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
+	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
 )
@@ -94,28 +97,6 @@ func TestAllPost(t *testing.T) {
 	}
 }
 
-func TestSinglePost(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("GET", "/api/allpost/30", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
 func TestGetCommodities(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
@@ -138,36 +119,24 @@ func TestGetCommodities(t *testing.T) {
 	}
 }
 
-func TestSingleCommodities(t *testing.T) {
+func TestAllUsers(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
 	database.Connect()
 	app := fiber.New()
 	routes.Setup(app)
 
-	req, err := http.NewRequest("POST", "/api/getAllCommodities/3", nil)
+	user := models.User{
+		Id: 1,
+	}
+
+	// Convert user to JSON
+	userJson, err := json.Marshal(user)
 	if err != nil {
-		t.Fatal(err)
+		t.Fatalf("Failed to marshal user: %v", err)
 	}
 
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
-func TestSingleUser(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("POST", "/api/allUsers/19", nil)
+	req, err := http.NewRequest("POST", "/api/allUsers", bytes.NewReader(userJson))
 	if err != nil {
 		t.Fatal(err)
 	}

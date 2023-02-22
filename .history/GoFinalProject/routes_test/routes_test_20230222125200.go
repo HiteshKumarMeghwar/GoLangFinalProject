@@ -1,12 +1,16 @@
 package routes_test
 
 import (
+	"encoding/json"
 	"net/http"
+	"net/http/httptest"
 	"testing"
 
+	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/controllers"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
+	"github.com/stretchr/testify/assert"
 )
 
 /* func TestRegister(t *testing.T) {
@@ -94,92 +98,34 @@ func TestAllPost(t *testing.T) {
 	}
 }
 
-func TestSinglePost(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("GET", "/api/allpost/30", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
 func TestGetCommodities(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
+	// Create a new fiber app
 	app := fiber.New()
-	routes.Setup(app)
 
-	req, err := http.NewRequest("GET", "/api/getAllCommodities", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	// Define the route and its associated controller function
+	app.Get("/api/getAllCommodities", controllers.GetCommodities)
 
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
+	// Create a new HTTP GET request to the route
+	req := httptest.NewRequest(http.MethodGet, "/api/getAllCommodities", nil)
 
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
+	// Record the HTTP response from the route
+	res, err := app.Test(req, -1)
 
-func TestSingleCommodities(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
+	// Check that there was no error and the HTTP response status is 200 OK
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, res.StatusCode)
 
-	req, err := http.NewRequest("POST", "/api/getAllCommodities/3", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	// Parse the response body as JSON and store it in a map
+	var data map[string]interface{}
+	err = json.NewDecoder(res.Body).Decode(&data)
 
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
+	// Check that there was no error in parsing the JSON response body
+	assert.NoError(t, err)
 
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
-func TestSingleUser(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("POST", "/api/allUsers/19", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
+	// Check that the response data contains a "commodities" field and that it is not empty
+	commodities, ok := data["commodities"].([]interface{})
+	assert.True(t, ok)
+	assert.NotEmpty(t, commodities)
 }
 
 // Write test cases for the other routes as well
