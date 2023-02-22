@@ -13,7 +13,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// Testing Register API ......................................
 func TestRegister(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
@@ -47,7 +46,6 @@ func TestRegister(t *testing.T) {
 	}
 }
 
-// Testing Login API ......................................
 func TestLogin(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
@@ -78,7 +76,6 @@ func TestLogin(t *testing.T) {
 	}
 }
 
-// Testing All Posts API ......................................
 func TestAllPost(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
@@ -101,7 +98,6 @@ func TestAllPost(t *testing.T) {
 	}
 }
 
-// Testing Single Post API ......................................
 func TestSinglePost(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
@@ -124,7 +120,6 @@ func TestSinglePost(t *testing.T) {
 	}
 }
 
-// Testing All Commodity Module API ......................................
 func TestAllCommodities(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
@@ -147,7 +142,6 @@ func TestAllCommodities(t *testing.T) {
 	}
 }
 
-// Testing Single Commodity Module API ......................................
 func TestSingleCommodities(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
@@ -170,7 +164,7 @@ func TestSingleCommodities(t *testing.T) {
 	}
 }
 
-// Testing All Users API ......................................
+// Testing All User API ......................................
 func TestAllUsers(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
