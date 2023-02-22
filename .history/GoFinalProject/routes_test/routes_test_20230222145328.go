@@ -15,12 +15,11 @@ import (
 
 // Testing Register API ......................................
 func TestRegister(t *testing.T) {
-	database.Connect()
 	app := fiber.New()
 	routes.Setup(app)
 
 	// Create a new user to register
-	user := models.User{
+	/* user := models.User{
 		FirstName: "John",
 		LastName:  "Rocco",
 		Email:     "johnrocco@gmail.com",
@@ -33,12 +32,13 @@ func TestRegister(t *testing.T) {
 	userJson, err := json.Marshal(user)
 	if err != nil {
 		t.Fatalf("Failed to marshal user: %v", err)
-	}
+	} */
+	userJson := []byte(`{"first_name": "John", "last_name": "Rocco", "email": "johnrocco@gmail.com", "phone": "12132443343432",}`)
 
 	// Make a POST request to register endpoint
-	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewReader(userJson))
+	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewBuffer(userJson))
 	req.Header.Set("Content-Type", "application/json")
-	resp, err := app.Test(req, -1)
+	resp, err := app.Test(req)
 	if err != nil {
 		t.Fatalf("Failed to send request: %v", err)
 	}
@@ -50,7 +50,6 @@ func TestRegister(t *testing.T) {
 
 // Testing Login API ......................................
 func TestLogin(t *testing.T) {
-	database.Connect()
 	app := fiber.New()
 	routes.Setup(app)
 
