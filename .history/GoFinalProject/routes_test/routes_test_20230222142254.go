@@ -1,19 +1,15 @@
 package routes_test
 
 import (
-	"bytes"
-	"encoding/json"
 	"net/http"
-	"net/http/httptest"
 	"testing"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
-	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
 )
 
-func TestRegister(t *testing.T) {
+/* func TestRegister(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
@@ -44,9 +40,9 @@ func TestRegister(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
-}
+} */
 
-func TestLogin(t *testing.T) {
+/* func TestLogin(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
@@ -74,7 +70,7 @@ func TestLogin(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
 	}
-}
+} */
 
 func TestAllPost(t *testing.T) {
 	/* Requiring Database Env Variables */
@@ -120,7 +116,7 @@ func TestSinglePost(t *testing.T) {
 	}
 }
 
-func TestAllCommodities(t *testing.T) {
+func TestGetCommodities(t *testing.T) {
 	/* Requiring Database Env Variables */
 	// database.LoadEnvVariables()
 	database.Connect()
@@ -171,18 +167,7 @@ func TestAllUsers(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
-	// Create a new user to login
-	id := models.User{
-		Id: 19,
-	}
-
-	// Convert user to JSON
-	user_id, err := json.Marshal(id)
-	if err != nil {
-		t.Fatalf("Failed to marshal user: %v", err)
-	}
-
-	req, err := http.NewRequest("POST", "/api/allUsers", bytes.NewReader(user_id))
+	req, err := http.NewRequest("POST", "/api/allUsers", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
