@@ -20,13 +20,23 @@ func TestRegister(t *testing.T) {
 	routes.Setup(app)
 
 	// Create a new user to register
-	user := models.User{
+	/* user := models.User{
 		FirstName: "John",
 		LastName:  "Rocco",
 		Email:     "johnrocco@gmail.com",
 		Password:  "johnrocco",
 		Phone:     "54553445653244543",
+		RoleId:    3,
+	} */
+
+	type User struct {
+		FirstName string `json:"first_name"`
+		LastName  string `json:"last_name"`
+		Email     string `json:"email" gorm:"unique"`
+		Password  string `json:"-"`
+		Phone     string `json:"phone"`
 	}
+	user := User{FirstName: "John", LastName: "Rocco", Email: "john.rocco@gmail.com", Password: "johnrocco", Phone: "5546563455454"}
 
 	// Convert user to JSON
 	userJson, err := json.Marshal(user)
@@ -35,7 +45,7 @@ func TestRegister(t *testing.T) {
 	}
 
 	// Make a POST request to register endpoint
-	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewReader(userJson))
+	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewBuffer(userJson))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req)
 	if err != nil {

@@ -20,13 +20,23 @@ func TestRegister(t *testing.T) {
 	routes.Setup(app)
 
 	// Create a new user to register
-	user := models.User{
+	/* user := models.User{
 		FirstName: "John",
 		LastName:  "Rocco",
 		Email:     "johnrocco@gmail.com",
 		Password:  "johnrocco",
 		Phone:     "54553445653244543",
+		RoleId:    3,
+	} */
+
+	type User struct {
+		FirstName string
+		LastName  string
+		Email     string
+		Password  string
+		Phone     string
 	}
+	user := User{FirstName: "Shayan5", LastName: "Khan5", Email: "shayankhan5@gmail.comm", Password: "shayankhan5", Phone: "03346685786"}
 
 	// Convert user to JSON
 	userJson, err := json.Marshal(user)
