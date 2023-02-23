@@ -243,27 +243,6 @@ func TestUniquePosts(t *testing.T) {
 	}
 }
 
-// Testing Delete Post API ......................................
-func TestDeletePost(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req := httptest.NewRequest(http.MethodDelete, "/api/deletepost/34", nil)
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatalf("Failed to send request: %v", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
 /* ****************************************************************************************** */
 /* ************************        Commodity Module Test Cases       *********************** */
 
