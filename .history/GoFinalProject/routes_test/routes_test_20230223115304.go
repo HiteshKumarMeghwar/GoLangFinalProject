@@ -122,13 +122,15 @@ func TestCreatePost(t *testing.T) {
 		t.Fatalf("Failed to marshal user: %v", err)
 	}
 
-	req := httptest.NewRequest(http.MethodPost, "/api/createpost", bytes.NewReader(userJson))
-	req.Header.Set("Content-Type", "application/json")
+	req, err := http.NewRequest("POST", "/api/createpost", bytes.NewReader(userJson))
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	resp, err := app.Test(req, -1)
 	if err != nil {
-		t.Fatalf("Failed to send request: %v", err)
+		t.Fatal(err)
 	}
-	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)

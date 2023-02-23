@@ -8,11 +8,10 @@ import (
 	"testing"
 
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/database"
+	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/models"
 	"github.com/HiteshKumarMeghwar/GoFinalProjec/MyModule/routes"
 	"github.com/gofiber/fiber/v2"
 )
-
-/* ************************        Login / Register Test Cases       *********************** */
 
 // Testing Register API ......................................
 func TestRegister(t *testing.T) {
@@ -46,7 +45,7 @@ func TestRegister(t *testing.T) {
 	// Make a POST request to register endpoint
 	req := httptest.NewRequest(http.MethodPost, "/api/register", bytes.NewReader(userJson))
 	req.Header.Set("Content-Type", "application/json")
-	resp, err := app.Test(req, -1)
+	resp, err := app.Test(req)
 	if err != nil {
 		t.Fatalf("Failed to send request: %v", err)
 	}
@@ -78,51 +77,6 @@ func TestLogin(t *testing.T) {
 
 	// Make a POST request to login endpoint
 	req := httptest.NewRequest(http.MethodPost, "/api/login", bytes.NewReader(userJson))
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatalf("Failed to send request: %v", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
-/* ****************************************************************************************** */
-/* ************************        Post Test Cases       *********************** */
-
-// Testing Create Post API ......................................
-func TestCreatePost(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	// Create a new post
-	type Blog struct {
-		Title  string `json:"title"`
-		Desc   string `json:"desc"`
-		Image  string `json:"image"`
-		UserID string `json:"userid"`
-	}
-
-	user := Blog{
-		Title:  "tryPost",
-		Desc:   "tryPost Description",
-		Image:  "xvlbz_quotes-bckg.jpg",
-		UserID: "19",
-	}
-
-	// Convert user to JSON
-	userJson, err := json.Marshal(user)
-	if err != nil {
-		t.Fatalf("Failed to marshal user: %v", err)
-	}
-
-	req := httptest.NewRequest(http.MethodPost, "/api/createpost", bytes.NewReader(userJson))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
@@ -167,32 +121,6 @@ func TestSinglePost(t *testing.T) {
 	routes.Setup(app)
 
 	req, err := http.NewRequest("GET", "/api/allpost/30", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	resp, err := app.Test(req, -1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
-	}
-}
-
-/* ****************************************************************************************** */
-/* ************************        Commodity Module Test Cases       *********************** */
-
-// Testing Weather API ......................................
-func TestWeatherCommodity(t *testing.T) {
-	/* Requiring Database Env Variables */
-	// database.LoadEnvVariables()
-	database.Connect()
-	app := fiber.New()
-	routes.Setup(app)
-
-	req, err := http.NewRequest("POST", "/api/weatherData/jamshoro", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -253,9 +181,6 @@ func TestSingleCommodities(t *testing.T) {
 	}
 }
 
-/* ****************************************************************************************** */
-/* ************************        User Test Cases       *********************** */
-
 // Testing All Users API ......................................
 func TestAllUsers(t *testing.T) {
 	/* Requiring Database Env Variables */
@@ -264,14 +189,26 @@ func TestAllUsers(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
-	// Make a POST request to register endpoint
-	req := httptest.NewRequest(http.MethodPost, "/api/allUsers", bytes.NewBufferString(`{"id": "19"}`))
-	req.Header.Set("Content-Type", "application/json")
+	// Create a new user to login
+	id := models.User{
+		Id: 19,
+	}
+
+	// Convert user to JSON
+	user_id, err := json.Marshal(id)
+	if err != nil {
+		t.Fatalf("Failed to marshal user: %v", err)
+	}
+
+	req, err := http.NewRequest("POST", "/api/allUsers", bytes.NewReader(user_id))
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	resp, err := app.Test(req, -1)
 	if err != nil {
-		t.Fatalf("Failed to send request: %v", err)
+		t.Fatal(err)
 	}
-	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
@@ -287,6 +224,29 @@ func TestSingleUser(t *testing.T) {
 	routes.Setup(app)
 
 	req, err := http.NewRequest("POST", "/api/allUsers/19", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	resp, err := app.Test(req, -1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("Expected status code %d but got %d", http.StatusOK, resp.StatusCode)
+	}
+}
+
+// Testing Weather API ......................................
+func TestWeatherCommodity(t *testing.T) {
+	/* Requiring Database Env Variables */
+	// database.LoadEnvVariables()
+	database.Connect()
+	app := fiber.New()
+	routes.Setup(app)
+
+	req, err := http.NewRequest("POST", "/api/weatherData/jamshoro", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
