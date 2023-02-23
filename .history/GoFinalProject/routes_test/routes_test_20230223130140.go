@@ -251,7 +251,7 @@ func TestDeletePost(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
-	req := httptest.NewRequest(http.MethodDelete, "/api/deletepost/35", nil)
+	req := httptest.NewRequest(http.MethodDelete, "/api/deletepost/34", nil)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
