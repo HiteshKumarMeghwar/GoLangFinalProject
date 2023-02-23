@@ -208,7 +208,7 @@ func TestUpdatePost(t *testing.T) {
 		t.Fatalf("Failed to marshal user: %v", err)
 	}
 
-	req := httptest.NewRequest(http.MethodPut, "/api/updatepost/39", bytes.NewReader(userJson))
+	req := httptest.NewRequest(http.MethodPut, "/api/updatepost/38", bytes.NewReader(userJson))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
@@ -251,7 +251,7 @@ func TestDeletePost(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
-	req := httptest.NewRequest(http.MethodDelete, "/api/deletepost/39", nil)
+	req := httptest.NewRequest(http.MethodDelete, "/api/deletepost/38", nil)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
@@ -455,7 +455,7 @@ func TestUpdateUser(t *testing.T) {
 		t.Fatalf("Failed to marshal user: %v", err)
 	}
 
-	req := httptest.NewRequest(http.MethodPut, "/api/updateUser/32", bytes.NewReader(userJson))
+	req := httptest.NewRequest(http.MethodPut, "/api/updateUser/31", bytes.NewReader(userJson))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
@@ -476,7 +476,7 @@ func TestDeleteUser(t *testing.T) {
 	app := fiber.New()
 	routes.Setup(app)
 
-	req := httptest.NewRequest(http.MethodDelete, "/api/deleteUser/32", nil)
+	req := httptest.NewRequest(http.MethodDelete, "/api/deleteUser/31", nil)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := app.Test(req, -1)
 	if err != nil {
