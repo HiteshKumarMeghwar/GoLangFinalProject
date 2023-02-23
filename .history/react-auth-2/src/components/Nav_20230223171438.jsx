@@ -29,7 +29,7 @@ function Nav(props) {
           <div className="container flex flex-wrap items-center justify-between mx-auto">
             <Link to="/" className="flex items-center">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-d8t7uANGKHm2xN5PtBAQPkfKJc-UhSjVQLvtS65E&s" className="h-10 mr-3 sm:h-10" alt="Flowbite Logo" />
-                <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Kumar's App</span>
+                <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Hitesh's App</span>
             </Link>
             <button id="hamburger-button" data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 cursor-pointer focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="true">
               <span className="sr-only">Open main menu</span>
