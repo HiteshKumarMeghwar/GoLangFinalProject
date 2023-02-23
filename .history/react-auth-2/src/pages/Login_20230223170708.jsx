@@ -149,16 +149,6 @@ export default function Login() {
                         </button>
                     </div>
                     <div className="mt-3">
-                        <FacebookLogin
-                            appId="your-facebook-app-id"
-                            fields="name,email,picture"
-                            callback={handleFacebookLogin}
-                            cssClass="w-full font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-opacity-50"
-                            >
-                            Login with Facebook
-                        </FacebookLogin>
-                    </div>
-                    <div className="mt-3">
                         <GoogleLogin
                             clientId="your-google-client-id"
                             buttonText="Login with Google"
@@ -167,6 +157,16 @@ export default function Login() {
                             cookiePolicy={'single_host_origin'}
                             className="w-full font-bold py-2 px-4 rounded bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
                         />
+                    </div>
+                    <div className="mt-3">
+                    <FacebookLogin
+                        appId="your-facebook-app-id"
+                        fields="name,email,picture"
+                        callback={handleFacebookLogin}
+                        cssClass="w-full font-bold py-2 px-4 rounded bg-blue-700 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-opacity-50"
+                        >
+                        Login with Facebook
+                    </FacebookLogin>
                     </div>
                 </form>
 

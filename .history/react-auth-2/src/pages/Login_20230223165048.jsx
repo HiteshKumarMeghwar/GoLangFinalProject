@@ -148,25 +148,32 @@ export default function Login() {
                             {loading ? "Loading...":"Sign In"}
                         </button>
                     </div>
-                    <div className="mt-3">
-                        <FacebookLogin
-                            appId="your-facebook-app-id"
-                            fields="name,email,picture"
-                            callback={handleFacebookLogin}
-                            cssClass="w-full font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-opacity-50"
-                            >
-                            Login with Facebook
-                        </FacebookLogin>
-                    </div>
-                    <div className="mt-3">
+                    <div className="text-center">
                         <GoogleLogin
                             clientId="your-google-client-id"
                             buttonText="Login with Google"
                             onSuccess={handleGoogleLoginSuccess}
                             onFailure={handleGoogleLoginFailure}
                             cookiePolicy={'single_host_origin'}
-                            className="w-full font-bold py-2 px-4 rounded bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
                         />
+                        <FacebookLogin
+                            appId="your-facebook-app-id"
+                            fields="name,email,picture"
+                            callback={handleFacebookLogin}
+                            buttonStyle={{
+                                backgroundColor: '#3b5998',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '3px',
+                                border: 'none',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                                outline: 'none'
+                            }}
+                        >
+                            Login with Facebook
+                        </FacebookLogin>
                     </div>
                 </form>
 
